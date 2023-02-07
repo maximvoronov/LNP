@@ -70,8 +70,8 @@ LNPRWin::LNPRWin(QWidget *parent)
     hbox_term = new QHBoxLayout;
     hbox_term->addWidget(lbl_term);
     hbox_term->setGeometry(QRect(1140, 120, 300, 300));
-/**/
 
+    /**/
     lbl_robot = new QLabel(this);
     lbl_robot->setStyleSheet("background-color: black");
     lbl_robot->setFixedSize(QSize(140, 140));
@@ -141,7 +141,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     vboxL->addWidget(box_tech);
     vboxL->addWidget(block_filter);
 
-    vboxR = new QVBoxLayout;
+    vboxR = new QVBoxLayout(this);
     vboxR->setMargin(15);
     vboxR->setSpacing(35);
 
@@ -159,10 +159,11 @@ LNPRWin::LNPRWin(QWidget *parent)
 
     pal.setBrush(backgroundRole(),QBrush(QPixmap("C:\\Prj\\LNP\\resources\\scheme.jpg")));
     setPalette(pal);
+
+    animateRun(b_mech);
     setStyleSheet("background-radius: 30 30 30 30; border-size: 15px; border: solid;"
                                      "border-width: 5px;"
                                      "border-color: cadetblue; border-radius: 30 30 30 30;");
-    animateRun(tech_process_frame);
 }
 
 
@@ -183,33 +184,32 @@ int LNPRWin::getWindowHeight() const{
 }
 
 LNPRWin::~LNPRWin()
-{
-}
+{}
 
-void LNPRWin::animateRun(QFrame *object){
+void LNPRWin::animateRun(QWidget *button){
+    effect = new QGraphicsColorizeEffect(this);
+    anim = new QPropertyAnimation(effect, "color");
+    button->setGraphicsEffect(effect);
+    anim->setStartValue(QColor(Qt::lightGray));
+    anim->setKeyValueAt(0.95f,QColor(Qt::darkGreen));
+    anim->setEndValue(QColor(Qt::darkRed));
+    anim->setDuration(2000);
 
-    QGraphicsColorizeEffect effect;
-    object->setGraphicsEffect(&effect);
-    QPropertyAnimation anim(&effect, "color");
-    anim.setStartValue(QPoint(500,100));
-    //anim.setKeyValueAt(0.25f,QColor(Qt::green));
-//    anim.setKeyValueAt(0.3f,QColor(Qt::blue));
-//    anim.setKeyValueAt(0.5f,QColor(Qt::yellow));
-    anim.setKeyValueAt(0.7f,QColor(Qt::gray));
-    //anim.setKeyValueAt(0.95f,QColor(Qt::red));
-    anim.setEndValue(QPoint(1000,600));
-    anim.setDuration(3000);
+    std::cout << anim->duration();
 
-    anim.setLoopCount(-1);
-    anim.start();
+    anim->setLoopCount(-1);
+    anim->start();
 }
 
 
 void LNPRWin::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing,true);
-
     painter.drawRect(0,0,getWindowWidth(),getWindowHeight());
+
+
+
+
 
 }
 
