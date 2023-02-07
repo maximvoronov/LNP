@@ -123,11 +123,11 @@ LNPRWin::LNPRWin(QWidget *parent)
     block_frame->setGeometry(QRect(1450, 800, 420, 200));
 
     msg_info = new QLabel(this);
-    msg_info->setStyleSheet("background: black; color: white");
+    msg_info->setStyleSheet("background: black; text-align: center; color: white");
     msg_info->setFont(QFont("Ariel", 25, QFont::Bold));
-
     msg_info->setText(QString("Внимание: Датчик не выключен!"));
     msg_info->setFixedSize(QSize(700, 140));
+    msg_info->setAlignment(Qt::AlignCenter);
     hbox_msg_info = new QHBoxLayout;
     hbox_msg_info->addWidget(msg_info);
     hbox_msg_info->setGeometry(QRect(620, 760, 760, 280));
@@ -157,9 +157,9 @@ LNPRWin::LNPRWin(QWidget *parent)
     gbox_service->setGeometry(1710,100,160,600);
     gbox_service->setLayout(vboxR);
 
-    pal.setBrush(this->backgroundRole(),QBrush(QPixmap("C:\\Prj\\LNP\\resources\\scheme.jpg")));
+    pal.setBrush(backgroundRole(),QBrush(QPixmap("C:\\Prj\\LNP\\resources\\scheme.jpg")));
     setPalette(pal);
-    setStyleSheet("background-radius: 30,30,30,30; border-size: 15px; border: solid;"
+    setStyleSheet("background-radius: 30 30 30 30; border-size: 15px; border: solid;"
                                      "border-width: 5px;"
                                      "border-color: cadetblue; border-radius: 30 30 30 30;");
     animateRun(tech_process_frame);
@@ -191,17 +191,17 @@ void LNPRWin::animateRun(QFrame *object){
     QGraphicsColorizeEffect effect;
     object->setGraphicsEffect(&effect);
     QPropertyAnimation anim(&effect, "color");
-    anim.setStartValue(QColor(Qt::lightGray));
+    anim.setStartValue(QPoint(500,100));
     //anim.setKeyValueAt(0.25f,QColor(Qt::green));
 //    anim.setKeyValueAt(0.3f,QColor(Qt::blue));
 //    anim.setKeyValueAt(0.5f,QColor(Qt::yellow));
     anim.setKeyValueAt(0.7f,QColor(Qt::gray));
     //anim.setKeyValueAt(0.95f,QColor(Qt::red));
-    anim.setEndValue(QColor(Qt::red));
+    anim.setEndValue(QPoint(1000,600));
     anim.setDuration(3000);
+
     anim.setLoopCount(-1);
     anim.start();
-    object->show();
 }
 
 
