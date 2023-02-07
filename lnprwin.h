@@ -19,6 +19,8 @@
 #include <QPainterPath>
 #include <QPaintEvent>
 #include <QLabel>
+#include <QGraphicsColorizeEffect>
+#include <QPropertyAnimation>
 
 class LNPRWin : public QWidget
 {
@@ -31,7 +33,7 @@ public:
     void setWindowWidth(int width);
     void setWindowHeight(int height);
     void paintEvent(QPaintEvent *event) override;
-    void animateRun(QFrame *widget);
+    void animateRun(QWidget *button);
 
 private:
     QGroupBox *gbox = nullptr, *gbox_service = nullptr;
@@ -48,6 +50,8 @@ private:
     QFrame *message_frame = nullptr, *tech_process_frame = nullptr, *service_frame = nullptr, *block_frame = nullptr;
     QLabel *lbl_adgesia = nullptr, *lbl_term = nullptr, *lbl_robot = nullptr, *lbl_put_resist = nullptr, *lbl_centr = nullptr, *lbl_term_stand = nullptr;
     QFrame *frame_adgesia = nullptr, *frame_term = nullptr, *frame_robot = nullptr,  *frame_put_resist = nullptr, *frame_centr = nullptr, *frame_temr_stand = nullptr;
+    QPropertyAnimation *anim = nullptr;
+    QGraphicsColorizeEffect *effect = nullptr;
 
 private:
     int width, height;
