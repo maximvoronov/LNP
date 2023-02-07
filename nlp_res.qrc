@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/scheme.jpg</file>
+        <file>resources/gear2.png</file>
+        <file>resources/sensor.png</file>
+        <file>resources/adg.png</file>
+    </qresource>
+</RCC>

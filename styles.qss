@@ -1,0 +1,64 @@
+QWidget:active{
+    border-color: cyan;
+    margin: 20px;
+    border: double;
+    border-radius: 45 45 45 45;
+    border-width: 15px 10px 15px 10px;
+    effect: dropshadow(one-pass-box, black, 8, 0.0, 2,0);
+}
+
+QPushButton:active
+{
+    background-radius: 30,10,30,10;
+    background-insets: 5px;
+    border-size: 15px;
+    background-color: linear-gradient(to bottom right, lightgreen, cadetblue);
+    border-width: 3px;
+    border-color: gray;
+    border-radius: 30 30 30 30;
+    effect: dropshadow(one-pass-box, black, 8, 0.0, 2,0);
+}
+
+QPushButton:hover
+{
+    background-radius: 30,10,30,10;
+    background-insets: 5px;
+    border-size: 15px;
+    background-color: linear-gradient(to bottom right, lightgreen, cadetblue);
+    border-width: 3px;
+    border-color: gray;
+    border-radius: 30 30 30 30;
+    effect: dropshadow(one-pass-box, black, 8, 0.0, 2,0);
+}
+QPushButton:pressed
+{
+    background-radius: 30,10,30,10;
+    background-insets: 5px;
+    border-size: 15px;
+    background-color: linear-gradient(to bottom right, lightgreen, cadetblue);
+    border-width: 3px;
+    border-color: gray;
+    border-radius: 30 30 30 30;
+    effect: dropshadow(one-pass-box, black, 8, 0.0, 2,0);
+}
+QWidget
+{
+    border-color: cyan;
+    margin: 20px;
+    border-bottom-style: double;
+    border-radius: 45 45 45 45;
+    border-width: 15px 10px 15px 10px;
+    effect: dropshadow(one-pass-box,black, 8, 0.0, 2,0);
+}
+
+QHBoxLayout{
+    border-color: cyan;
+    margin: 20px;
+    border-bottom-style: double;
+    border-radius: 45 45 45 45;
+}
+QLineEdit {
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
