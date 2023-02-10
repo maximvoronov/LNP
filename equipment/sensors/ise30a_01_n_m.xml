@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<ISE30A_01_N_M> 
+<Model>
+	<ZSE30A>
+		<Rated_Pressure_Range>"Диапазон номинального давления: [0.0 to –101.0 kPa]"</Rated_Pressure_Range>
+		<Set_Pressure_Range>"Диапазон давления: [10.0 to –105.0 kPa]"</Set_Pressure_Range>
+		<Withstand_Pressure>"Выдерживаемое давление: [500 kPa]"</Withstand_Pressure>
+		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.1 kPa]"</Minimum_Unit_Setting>	
+	</ZSE30A>
+	<ZSE30AF>
+		<Rated_Pressure_Range>"Диапазон номинального давления: –100.0 to 100.0 kPa"</Rated_Pressure_Range>
+		<Set_Pressure_Range>"Диапазон давления: [–105.0 to 105.0 kPa]"</Set_Pressure_Range>
+		<Withstand_Pressure>"Выдерживаемое давление: [500 kPa]"</Withstand_Pressure>
+		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.1 kPa]"</Minimum_Unit_Setting>
+	</ZSE30F>
+	<ISE30A>
+		<Rated_Pressure_Range>"Диапазон номинального давления: –0.100 to 1.000 MPa"</Rated_Pressure_Range>
+		<Set_Pressure_Range>"Диапазон давления: [–0.105 to 1.050 MPa"]</Set_Pressure_Range>
+		<Withstand_Pressure>"Выдерживаемое давление: [1.5 MPa]"</Withstand_Pressure>
+		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.001 MPa]"</Minimum_Unit_Setting>
+	</ISE30A>
+	<Applicable_Fluid>"Применимая жидкость: [Воздух, Неагрессивный газ, Невоспламеняющийся газ]"</Applicable_Fluid>
+</Model>
+
+</ISE30A_01_N_M>
