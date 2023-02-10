@@ -8,6 +8,9 @@ class Sensor
 public:
     enum State { On = 201, Off };
     enum LightSource {};
+
+    bool WriteData();
+
     Sensor();
 
 private:
@@ -16,7 +19,6 @@ private:
     QString power;
     int current;
     QTime response;
-
 
 };
 

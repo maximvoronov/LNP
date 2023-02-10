@@ -21,23 +21,27 @@
 #include <QLabel>
 #include <QGraphicsColorizeEffect>
 #include <QPropertyAnimation>
+#include <QKeyEvent>
 
 class LNPRWin : public QWidget
 {
     Q_OBJECT
 public:
+    enum AnimateUI{ Frame=1001, Group, Button};
     LNPRWin(QWidget *parent = nullptr);
     ~LNPRWin();
     int getWindowWidth() const;
     int getWindowHeight() const;
     void setWindowWidth(int width);
     void setWindowHeight(int height);
-    void paintEvent(QPaintEvent *event) override;
-    void animateRun(QWidget *button);
+    //void paintEvent(QPaintEvent *event) override;
+    void animateRun(QWidget *widget, enum AnimateUI ui_widget);
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     QGroupBox *gbox = nullptr, *gbox_service = nullptr;
     QPalette pal;
+    QFrame *main_frame = nullptr, *additional_frame=nullptr;
     QFile *style_desc = nullptr;
     QVBoxLayout *vboxL = nullptr, *vboxR = nullptr;
     QHBoxLayout *hbox_msg_info = nullptr, *hbox_msg_mech = nullptr;

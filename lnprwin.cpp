@@ -1,5 +1,6 @@
-#include "ioexception.h"
+#include "exception.h"
 #include "lnprwin.h"
+#include "wgttext.h"
 
 #include <QGraphicsColorizeEffect>
 #include <QPropertyAnimation>
@@ -11,7 +12,7 @@ LNPRWin::LNPRWin(QWidget *parent)
 /*load from config if not present to set it manualy*/
     setGeometry(0, 0, 1920, 1080);
     //setAttribute(Qt::WA_TranslucentBackground);
-
+    setAttribute(Qt::WA_AcceptTouchEvents);
     box_loadcollect_r = new QPushButton(this);
     box_loadcollect_r->setStyleSheet("background-color: black;");
     box_loadcollect_r->setIconSize(QSize(64,64));
@@ -35,19 +36,28 @@ LNPRWin::LNPRWin(QWidget *parent)
 
     b_sensors = new QPushButton(this);
     b_sensors->setStyleSheet("background-color: black");
-    b_sensors->setMinimumSize(QSize(120,120));
-    b_sensors->setIconSize(QSize(64,64));
-    //b_sensors->setIcon(QPixmap("F:\\Qt_C++_PRJ\\LNP\\resources\\sensor.png"));
+    b_sensors->setIconSize(QSize(64, 64));
+    b_sensors->setIcon(QPixmap("C:\\Prj\\LNP\\resources\\za.png"));
+    b_sensors->setMinimumSize(QSize(120, 120));
 
     b_info = new QPushButton(this);
     b_info->setStyleSheet("background-color: black");
-    b_info->setMinimumSize(QSize(120,120));
+    b_info->setIconSize(QSize(80,80));
+    b_info->setMinimumSize(QSize(120, 120));
+    b_info->setIcon(QPixmap("C:\\scada\\LNP\\equipment\\sensors\\pic\\ise30a.jpg"));
+
+    main_frame = new QFrame(this);
+    main_frame->setGeometry(QRect(20, 20, 1895, 1050));
+    main_frame->setStyleSheet("background-radius: 45 45 45 45; border-size: 15px; border: solid; border-width: 15px; border-color: cadetblue; border-radius: 30 30 30 30");
+    additional_frame = new QFrame(this);
+    additional_frame->setGeometry(560,60,400,40);
+    additional_frame->setStyleSheet("background-radius: 15 15 15 15; border-size: 5px; border: solid; border-width: 5px; border-color: cadetblue; border-radius: 12 12 12 12");
 
     tech_process_frame = new QFrame(this);
     tech_process_frame->setGeometry(QRect(500,100,1000,600));
 
     lbl_adgesia = new QLabel(this);
-    lbl_adgesia->setPixmap(QPixmap("C:\\Prj\\LNP\\resources\\adg.png"));
+    //lbl_adgesia->setPixmap(QPixmap("C:\\Prj\\LNP\\resources\\adg.png"));
     lbl_adgesia->setFixedSize(QSize(200, 200));
     //lbl_adgesia->setGeometry(QRect(560, 120, 560, 280));
     lbl_adgesia->setStyleSheet("background-color: black");
@@ -60,6 +70,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     hbox_adgesia->setSpacing(35);
     hbox_adgesia->addWidget(lbl_adgesia);
     hbox_adgesia->setGeometry(QRect(20, 120, 1320, 300));
+
     /**/
     lbl_term = new QLabel(this);
     lbl_term->setFixedSize(QSize(200,200));
@@ -67,6 +78,7 @@ LNPRWin::LNPRWin(QWidget *parent)
 
     frame_term = new QFrame(this);
     frame_term->setGeometry(QRect(1100, 120, 380, 300));
+
     hbox_term = new QHBoxLayout;
     hbox_term->addWidget(lbl_term);
     hbox_term->setGeometry(QRect(1140, 120, 300, 300));
@@ -160,12 +172,23 @@ LNPRWin::LNPRWin(QWidget *parent)
     pal.setBrush(backgroundRole(),QBrush(QPixmap("C:\\Prj\\LNP\\resources\\scheme.jpg")));
     setPalette(pal);
 
-    animateRun(b_mech);
+    animateRun(b_mech, AnimateUI::Button);
+    animateRun(b_sensors, AnimateUI::Button);
+    animateRun(additional_frame, AnimateUI::Frame);
+    animateRun(frame_robot, AnimateUI::Frame);
+
+
     setStyleSheet("background-radius: 30 30 30 30; border-size: 15px; border: solid;"
                                      "border-width: 5px;"
                                      "border-color: cadetblue; border-radius: 30 30 30 30;");
-}
 
+    //connect(b_sensors, SIGNAL(clicked()), this, SLOT(onWgtText()));
+
+
+
+
+
+}
 
 void LNPRWin::setWindowWidth(int width){
     this->width = width;
@@ -186,31 +209,49 @@ int LNPRWin::getWindowHeight() const{
 LNPRWin::~LNPRWin()
 {}
 
-void LNPRWin::animateRun(QWidget *button){
+void LNPRWin::animateRun(QWidget *widget, enum AnimateUI ui_widget){
     effect = new QGraphicsColorizeEffect(this);
     anim = new QPropertyAnimation(effect, "color");
-    button->setGraphicsEffect(effect);
-    anim->setStartValue(QColor(Qt::lightGray));
-    anim->setKeyValueAt(0.95f,QColor(Qt::darkGreen));
-    anim->setEndValue(QColor(Qt::darkRed));
-    anim->setDuration(2000);
-
-    std::cout << anim->duration();
-
-    anim->setLoopCount(-1);
-    anim->start();
+    widget->setGraphicsEffect(effect);
+    switch (ui_widget) {
+    case AnimateUI::Button:
+        anim->setStartValue(QColor(Qt::darkRed));
+        //anim->setKeyValueAt(0.25f,QColor(Qt::cyan));
+        anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
+        anim->setEndValue(QColor(Qt::black));
+        anim->setDuration(3000);
+        anim->setLoopCount(-1);
+        anim->start();
+        break;
+    case AnimateUI::Frame:
+        anim->setStartValue(QColor(Qt::darkRed));
+        anim->setKeyValueAt(0.25f,QColor(Qt::white));
+        anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
+        anim->setEndValue(QColor(Qt::black));
+        anim->setDuration(12000);
+        anim->setLoopCount(-1);
+        anim->start();
+        break;
+    case AnimateUI::Group:
+        anim->setStartValue(QColor(Qt::darkRed));
+        anim->setKeyValueAt(0.25f,QColor(Qt::white));
+        anim->setKeyValueAt(0.55f,QColor(Qt::darkYellow));
+        anim->setEndValue(QColor(Qt::black));
+        anim->setDuration(3000);
+        anim->setLoopCount(-1);
+        anim->start();
+        break;
+    }
 }
 
+void LNPRWin::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->type())
+    {
+        case QEvent::TouchBegin:
+        break;
 
-void LNPRWin::paintEvent(QPaintEvent *event){
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing,true);
-    painter.drawRect(0,0,getWindowWidth(),getWindowHeight());
-
-
-
-
-
+    }
 }
 
 

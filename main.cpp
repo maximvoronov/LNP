@@ -6,8 +6,10 @@
 #include <QRect>
 #include <QScreen>
 #include <iostream>
+#include <QTextCodec>
 
-void writeSettingsApp(QString group, QString value)
+
+void writeSettings(QString group, QString value)
 {
     QSettings settings;
     settings.beginGroup(group);
@@ -17,7 +19,7 @@ void writeSettingsApp(QString group, QString value)
     settings.endGroup();
 }
 
-void readSettingsApp()
+void readSetting()
 {
 
 }
@@ -35,12 +37,11 @@ int main(int argc, char *argv[])
     //QFile *style_desc = new QFile(":/style/styles.qss");
     //style_desc->open(QFile::ReadOnly);
     //QString cssfile = QLatin1String(style_desc->readAll());
-//    a.setStyleSheet("cssfile");
-    writeSettingsApp("Application", a.applicationName());
-    writeSettingsApp("MainWindow/WindowWidth", QString::number(screen_height,10));
-    writeSettingsApp("MainWindow/WindowHeight", QString::number(screen_width,10));
+    writeSettings("Application", a.applicationName());
+    writeSettings("MainWindow/WindowWidth", QString::number(screen_height,10));
+    writeSettings("MainWindow/WindowHeight", QString::number(screen_width,10));
 
-    w.setWindowFlag(Qt::FramelessWindowHint);
+    //w.setWindowFlag(Qt::FramelessWindowHint);
     w.show();
 
     return a.exec();

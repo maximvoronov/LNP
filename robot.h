@@ -3,13 +3,14 @@
 #include <QPoint>
 #include "sensor.h"
 #include <robotmessages.h>
+#include "exception.h"
 #include <QRect>
 
 class Robot
 {
 public:
 
-    enum State { Ready = 100, Busy, Stopped };
+    enum State { Ready = 100, Busy, BreakingDown, Stopped };
 
     Robot();
     Robot(QPoint *point, qreal velocity, int revoluton);

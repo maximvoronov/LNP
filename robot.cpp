@@ -29,6 +29,29 @@ bool Robot::writeToLog(QString message){
 }
 
 bool Robot::animate(enum State state){
+    switch(state)
+    {
+        case State::Ready:
+        /*animate(one)*/
+        return true;
+        break;
+    case State::Busy:
+        /*animate(two)*/
+        return true;
+        break;
+    case State::BreakingDown:
+        try {
+        //animate(three)
+        /*попробовать восстановить состояние*/
+    } catch (Exception::RobotException e) {
+        e.error_breakingdown(); //write to
+        return false;
+    }
+        break;
+    case State::Stopped:
+        return true;
+        break;
+    }
     return false;
 }
 
