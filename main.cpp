@@ -27,10 +27,14 @@ void readSetting()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    Q_INIT_RESOURCE(res);
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screen_geometry = screen->geometry();
     int screen_height = screen_geometry.height();
     int screen_width = screen_geometry.width();
+    QTextCodec *codec=QTextCodec::codecForName("UTF-8");
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(codec);
 
     LNPRWin w;
     //w.setWindowState(Qt::WindowFullScreen);
