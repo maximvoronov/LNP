@@ -3,5 +3,8 @@
         <file>resources/gear2.png</file>
         <file>resources/ec.png</file>
         <file>resources/ec2.png</file>
+        <file>resources/scheme.jpg</file>
+        <file>equipment/sensors/pic/ise30a.jpg</file>
+        <file>equipment/sensors/ise30a_01_n_m.xml</file>
     </qresource>
 </RCC>
