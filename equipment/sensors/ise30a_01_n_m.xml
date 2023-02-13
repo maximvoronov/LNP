@@ -3,28 +3,33 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
 -->
-
 <ISE30A_01_N_M> 
-<Model>
-	<ZSE30A>
-		<Rated_Pressure_Range>"Диапазон номинального давления: [0.0 to –101.0 kPa]"</Rated_Pressure_Range>
-		<Set_Pressure_Range>"Диапазон давления: [10.0 to –105.0 kPa]"</Set_Pressure_Range>
-		<Withstand_Pressure>"Выдерживаемое давление: [500 kPa]"</Withstand_Pressure>
-		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.1 kPa]"</Minimum_Unit_Setting>	
-	</ZSE30A>
-	<ZSE30AF>
-		<Rated_Pressure_Range>"Диапазон номинального давления: –100.0 to 100.0 kPa"</Rated_Pressure_Range>
-		<Set_Pressure_Range>"Диапазон давления: [–105.0 to 105.0 kPa]"</Set_Pressure_Range>
-		<Withstand_Pressure>"Выдерживаемое давление: [500 kPa]"</Withstand_Pressure>
-		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.1 kPa]"</Minimum_Unit_Setting>
-	</ZSE30F>
-	<ISE30A>
-		<Rated_Pressure_Range>"Диапазон номинального давления: –0.100 to 1.000 MPa"</Rated_Pressure_Range>
-		<Set_Pressure_Range>"Диапазон давления: [–0.105 to 1.050 MPa"]</Set_Pressure_Range>
-		<Withstand_Pressure>"Выдерживаемое давление: [1.5 MPa]"</Withstand_Pressure>
-		<Minimum_Unit_Setting>"Настройка минимальной единицы измерения: [0.001 MPa]"</Minimum_Unit_Setting>
-	</ISE30A>
-	<Applicable_Fluid>"Применимая жидкость: [Воздух, Неагрессивный газ, Невоспламеняющийся газ]"</Applicable_Fluid>
-</Model>
-
+	<Model>
+		<ZSE30A>
+			<Rated_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РЅРѕРјРёРЅР°Р»СЊРЅРѕРіРѕ РґР°РІР»РµРЅРёСЏ: [0.0 to вЂ“101.0 kPa]"</Rated_Pressure_Range>
+			<Set_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РґР°РІР»РµРЅРёСЏ: [10.0 to вЂ“105.0 kPa]"</Set_Pressure_Range>
+			<Withstand_Pressure>"Р’С‹РґРµСЂР¶РёРІР°РµРјРѕРµ РґР°РІР»РµРЅРёРµ: [500 kPa]"</Withstand_Pressure>
+			<Minimum_Unit_Setting>"РќР°СЃС‚СЂРѕР№РєР° РјРёРЅРёРјР°Р»СЊРЅРѕР№ РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ: [0.1 kPa]"</Minimum_Unit_Setting>	
+		</ZSE30A>
+		<ZSE30AF>
+			<Rated_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РЅРѕРјРёРЅР°Р»СЊРЅРѕРіРѕ РґР°РІР»РµРЅРёСЏ: вЂ“100.0 to 100.0 kPa"</Rated_Pressure_Range>
+			<Set_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РґР°РІР»РµРЅРёСЏ: [вЂ“105.0 to 105.0 kPa]"</Set_Pressure_Range>
+			<Withstand_Pressure>"Р’С‹РґРµСЂР¶РёРІР°РµРјРѕРµ РґР°РІР»РµРЅРёРµ: [500 kPa]"</Withstand_Pressure>
+			<Minimum_Unit_Setting>"РќР°СЃС‚СЂРѕР№РєР° РјРёРЅРёРјР°Р»СЊРЅРѕР№ РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ: [0.1 kPa]"</Minimum_Unit_Setting>
+		</ZSE30F>
+		<ISE30A>
+			<Rated_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РЅРѕРјРёРЅР°Р»СЊРЅРѕРіРѕ РґР°РІР»РµРЅРёСЏ: [вЂ“0.100 to 1.000 MPa]"</Rated_Pressure_Range>
+			<Set_Pressure_Range>"Р”РёР°РїР°Р·РѕРЅ РґР°РІР»РµРЅРёСЏ: [вЂ“0.105 to 1.050 MPa"]</Set_Pressure_Range>
+			<Withstand_Pressure>"Р’С‹РґРµСЂР¶РёРІР°РµРјРѕРµ РґР°РІР»РµРЅРёРµ: [1.5 MPa]"</Withstand_Pressure>
+			<Minimum_Unit_Setting>"РќР°СЃС‚СЂРѕР№РєР° РјРёРЅРёРјР°Р»СЊРЅРѕР№ РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ: [0.001 MPa]"</Minimum_Unit_Setting>
+		</ISE30A>
+		<Applicable_Fluid>"РџСЂРёРјРµРЅРёРјР°СЏ Р¶РёРґРєРѕСЃС‚СЊ: [Р’РѕР·РґСѓС…, РќРµР°РіСЂРµСЃСЃРёРІРЅС‹Р№ РіР°Р·, РќРµРІРѕСЃРїР»Р°РјРµРЅСЏСЋС‰РёР№СЃСЏ РіР°Р·]"</Applicable_Fluid>
+		<Power_Supply_Voltage>"РќР°РїСЂСЏР¶РµРЅРёРµ: 12 to 24 VDC В±10%, Ripple (p-p) 10% or less (with power supply polarity protection) "</Power_Supply_Voltage>
+		<Current_Consumption>"РўРѕРєРѕРІРѕРµ РїРѕС‚СЂРµР±Р»РµРЅРёРµ: [40 mA or less]"</Current_Consumption>
+                        <Maximum_Load_Current> "РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ С‚РѕРє РЅР°РіСЂСѓР·РєРё: [80 mA]"</Maximum_Load_Current>
+			<Maximum_Applied_Voltage> "28 V (at NPN output)" </Maximum_Applied_Voltage>
+		<Residual_Voltage>"РћСЃС‚Р°С‚РѕС‡РЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ: 1 V or less (with load current of 80 mA)"</Residual_Voltage>
+		<Response_Time>"Р’СЂРµРјСЏ РѕС‚РєР»РёРєР°: 2.5 ms or less (with anti-chattering function: 20, 100, 500, 1000, 2000 ms)"</Response_Time>
+	</Switch_Output>
+	</Model>
 </ISE30A_01_N_M>
