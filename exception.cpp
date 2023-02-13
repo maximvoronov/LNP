@@ -1,11 +1,11 @@
 #include "exception.h"
 
-Exception::IOException::IOException()
+Exception::FileNotFoundException::FileNotFoundException()
 {
-
+int n = QMessageBox::information(nullptr, "", "", QMessageBox::Ok);
 }
-void Exception::IOException::error_open_file() const{
-    std::cout << "error open file";
+void Exception::FileNotFoundException::error_open_file()const {
+
 /*запись в файл настроек*/
 }
 void Exception::RobotException::error_breakingdown(){

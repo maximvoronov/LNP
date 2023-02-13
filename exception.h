@@ -3,14 +3,17 @@
 
 #include <QLabel>
 #include <iostream>
+#include <QMessageBox>
 
 namespace Exception
 {
-    class IOException
+    class FileNotFoundException
     {
     public:
-        IOException();
+        FileNotFoundException();
         void error_open_file() const;
+        void error_found_file() const;
+
     private:
         QLabel lbl_message;
     };

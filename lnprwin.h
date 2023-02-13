@@ -27,7 +27,7 @@ class LNPRWin : public QWidget
 {
     Q_OBJECT
 public:
-    enum AnimateUI{ Frame=1001, Group, Button};
+    enum AnimateUI{ Frame = 1001, Group, Button};
     LNPRWin(QWidget *parent = nullptr);
     ~LNPRWin();
     int getWindowWidth() const;
@@ -37,7 +37,6 @@ public:
     //void paintEvent(QPaintEvent *event) override;
     void animateRun(QWidget *widget, enum AnimateUI ui_widget);
     void keyPressEvent(QKeyEvent *event) override;
-
 private:
     QGroupBox *gbox = nullptr, *gbox_service = nullptr;
     QPalette pal;

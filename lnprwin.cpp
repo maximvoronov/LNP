@@ -31,20 +31,20 @@ LNPRWin::LNPRWin(QWidget *parent)
     b_mech = new QPushButton(this);
     b_mech->setStyleSheet("background-color: black");
     b_mech->setIconSize(QSize(64,64));
-    b_mech->setIcon(QPixmap("C:\\Prj\\LNP\\resources\\gear2.png"));
+    b_mech->setIcon(QPixmap(":/resources/gear2.png"));
     b_mech->setMinimumSize(QSize(120,120));
 
     b_sensors = new QPushButton(this);
     b_sensors->setStyleSheet("background-color: black");
     b_sensors->setIconSize(QSize(64, 64));
-    b_sensors->setIcon(QPixmap("C:\\Prj\\LNP\\resources\\za.png"));
+    //b_sensors->setIcon(QPixmap("C:\\Prj\\LNP\\resources\\za.png"));
     b_sensors->setMinimumSize(QSize(120, 120));
 
     b_info = new QPushButton(this);
     b_info->setStyleSheet("background-color: black");
     b_info->setIconSize(QSize(80,80));
     b_info->setMinimumSize(QSize(120, 120));
-    b_info->setIcon(QPixmap("C:\\scada\\LNP\\equipment\\sensors\\pic\\ise30a.jpg"));
+    b_info->setIcon(QPixmap(":/equipment/sensors/pic/ise30a.jpg"));
 
     main_frame = new QFrame(this);
     main_frame->setGeometry(QRect(20, 20, 1895, 1050));
@@ -169,7 +169,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     gbox_service->setGeometry(1710,100,160,600);
     gbox_service->setLayout(vboxR);
 
-    pal.setBrush(backgroundRole(),QBrush(QPixmap("C:\\Prj\\LNP\\resources\\scheme.jpg")));
+    pal.setBrush(backgroundRole(),QBrush(QPixmap(":/resources/scheme.jpg")));
     setPalette(pal);
 
     animateRun(b_mech, AnimateUI::Button);
@@ -177,17 +177,10 @@ LNPRWin::LNPRWin(QWidget *parent)
     animateRun(additional_frame, AnimateUI::Frame);
     animateRun(frame_robot, AnimateUI::Frame);
 
-
     setStyleSheet("background-radius: 30 30 30 30; border-size: 15px; border: solid;"
                                      "border-width: 5px;"
                                      "border-color: cadetblue; border-radius: 30 30 30 30;");
-
     //connect(b_sensors, SIGNAL(clicked()), this, SLOT(onWgtText()));
-
-
-
-
-
 }
 
 void LNPRWin::setWindowWidth(int width){
