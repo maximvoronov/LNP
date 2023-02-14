@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+<PD30_08> 
+	<brand>PL</brand>
+	<type>Энкодеры, датчики угла поворота</type>
+	<encoder_resolution>1000 PPR</encoder_resolution>
+	<output_type>Дифференциальный, AB</output_type>
+	<supply_voltage>5VDC</supply_voltage>
+</PD30_08>
