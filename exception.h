@@ -11,12 +11,17 @@ namespace Exception
     {
     public:
         FileNotFoundException();
-        void error_open_file() const;
         void error_found_file() const;
 
     private:
         QLabel lbl_message;
     };
+    class FileOpenException{
+    public:
+        FileOpenException();
+        void error_open_file() const;
+    };
+
     class RobotException{
     public:
         RobotException();

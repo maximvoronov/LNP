@@ -3,15 +3,15 @@
 RobotMessages::RobotMessages()
 {}
 
-RobotMessages::RobotMessages(QString message, int message_counter) : message(), message_counter(0)
+RobotMessages::RobotMessages(QList<QString> message, int message_counter) : message(), message_counter(0)
 {
 }
 
-void RobotMessages::setMessage(QString message){
+void RobotMessages::setMessage(QList<QString> message){
     this->message = message;
 }
 
-QString RobotMessages::getMessage() const
+QList<QString> RobotMessages::getMessage() const
 {
     return message;
 }

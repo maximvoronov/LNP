@@ -1,18 +1,19 @@
 #ifndef ROBOTMESSAGES_H
 #define ROBOTMESSAGES_H
 #include <QString>
+#include <QList>
 
 class RobotMessages
 {
 public:
     RobotMessages();
-    RobotMessages(QString message, int message_counter);
+    RobotMessages(QList<QString> message, int message_counter);
 
-    void setMessage(QString message);
-    QString getMessage() const;
+    void setMessage(QList<QString> message);
+    QList<QString> getMessage() const;
 
 private:
-    QString message;
+    QList<QString> message;
     int message_counter;
 };
 

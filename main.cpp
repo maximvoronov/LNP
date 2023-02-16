@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForLocale(codec);
 
     LNPRWin w;
-    //w.setWindowState(Qt::WindowFullScreen);
     //QFile *style_desc = new QFile(":/style/styles.qss");
     //style_desc->open(QFile::ReadOnly);
     //QString cssfile = QLatin1String(style_desc->readAll());

@@ -6,5 +6,6 @@
         <file>resources/scheme.jpg</file>
         <file>equipment/sensors/pic/ise30a.jpg</file>
         <file>equipment/sensors/ise30a_01_n_m.xml</file>
+        <file>equipment/encoder/pd30_08.xml</file>
     </qresource>
 </RCC>

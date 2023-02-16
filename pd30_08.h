@@ -1,33 +1,50 @@
 #ifndef PD30_08_H
 #define PD30_08_H
-#include "encoder.h"
+#include <device.h>
+#include <encoder.h>
 
-class PD30_08 : public Encoder
+class PD30_08 : public Device, public Encoder
 {
 public:
     PD30_08();
 
-    void setName(QString name) override;
-    void setShaftSize(std::vector<qreal> shaft_size, qreal value) override;
-    void setBrand(QString brand) override;
-    void setEncoderResolution(std::vector<qint32> encoder_resolution, qint32 value) override;
-    void setOutputType(QString output_type) override;
-    void setSupplyVoltage(std::vector<qreal> voltage, qreal value) override;
-
-    QString getName() const override;
-    QString getBrand() const override;
-    QString getOutputType() const override;
-    std::vector<qint32> getEncoderResolution() const override;
-    std::vector<qreal> getShaftSize() const override;
-    std::vector<qreal> getSupplyVoltage() const override;
-
     ~PD30_08();
 
+    void setName(QString name) override;
+    QString getName() const override;
+
+    void setBrand(QString brand) override;
+    QString getBrand() const override;
+
+    void setWidth(qreal width) override;
+    qreal getWidth() const override;
+
+    void setHeight(qreal height) override;
+    qreal getHeight() const override;
+
+    void setLength(qreal lenght) override;
+    qreal getLength() const override;
+
+    void setKind(QString kind) override;
+    QString getKind() const override;
+
+    void setShaftSize(qreal shaft_size) override;
+    qreal getShaftSize() const override;
+
+    void setOutputType(QString output_type) override;
+    QString getOutputType() const override;
+
+    void setEncoderResolution(qint32 encoder_resolution) override;
+    qint32 getEncoderResolution() const override;
+
+
 private:
-    std::vector<qint32> encoder_resolution;
-    std::vector<qreal> shaft_size;
-    std::vector<qreal> supply_voltage;
-    QString name, brand, output_type;
+    qint32 encoder_resolution;
+    qreal shaft_size;
+    qreal supply_voltage, wattage, ressistance;
+    qreal length, height, width;
+    std::vector<qreal> voltage, current;
+    QString name, brand, output_type, kind;
 protected:
     qint8 counter;
 };

@@ -1,44 +1,44 @@
 #ifndef SENSOR_H
 #define SENSOR_H
-#include <QString>
-#include <QTime>
-#include <QXmlStreamReader>
 
-class  Sensor
+#include <QString>
+#include <device.h>
+#include <coil.h>
+
+class Sensor : public Device, public Coil
 {
 public:
+    enum SensorType {THROUGH_BEAM_WITH_SLOT = 401};
+    enum Mode_State { ON = 430, OFF};
+    /*Device*/
+    void setName(QString name) override;
+    QString getName() const override;
+    void setBrand(QString brand) override;
+    QString getBrand() const override;
+    void setWidth(qreal width) override;
+    qreal getWidth() const override;
+    void setHeight(qreal height) override;
+    qreal getHeight() const override;
+    void setLength(qreal lenght) override;
+    qreal getLength() const override;
 
-    enum SensorState { On = 201, Off };
-    enum LightSource {};
+    /*Coil*/
+    void setCurrent(qreal current) override;
+    qreal getCurrent() const override;
+    void setVoltage(qreal voltage) override;
+    qreal getVoltage() const override;
+    void setWattage(qreal wattage) override;
+    qreal getWattage() const override;
+    void setRessistance(qreal ressistance) override;
+    qreal getRessistance() const override;
 
-    virtual void setName(QString name) = 0;
-    virtual QString getName() const = 0;
+    Sensor();
+    ~Sensor();
 
-    virtual void setType(QString type) = 0;
-    virtual QString getType() const = 0;
-
-    virtual void setCurrent(int current) = 0;
-    virtual int getCurrent() const = 0;
-
-    virtual void setLength(float lentht) = 0;
-    virtual float getLength() const = 0;
-
-    virtual void setWidth(float width) = 0;
-    virtual float getWidth() const = 0;
-
-    virtual void setHeight(float height) = 0;
-    virtual float getHeight() const = 0;
-
-    virtual bool readInfo(QXmlStreamReader *reader) = 0;
-
-    //virtual ~Sensor(){};
-
-    //virtual Sensor();
-
-
-
-    //QTime response;
-
+private:
+    QString name, brand;
+    qreal width, length, height;
+    qreal current, voltage, wattage, ressistance;
 };
 
 #endif // SENSOR_H

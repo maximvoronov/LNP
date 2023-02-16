@@ -16,20 +16,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    eesx952r.cpp \
+    brake.cpp \
     exception.cpp \
     main.cpp \
     lnprwin.cpp \
-    robot.cpp \
-    robotmessages.cpp
+    robotmessages.cpp \
+    sensor.cpp \
+    verticaldrive.cpp
 
 HEADERS += \
-    eesx952r.h \
+    brake.h \
+    coil.h \
+    device.h \
+    encoder.h \
     exception.h \
     lnprwin.h \
     robot.h \
     robotmessages.h \
-    sensor.h
+    sensor.h \
+    verticaldrive.h
 
 TRANSLATIONS += \
     LNP_ru_RU.ts

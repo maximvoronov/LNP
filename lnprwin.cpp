@@ -37,7 +37,6 @@ LNPRWin::LNPRWin(QWidget *parent)
     b_sensors = new QPushButton(this);
     b_sensors->setStyleSheet("background-color: black");
     b_sensors->setIconSize(QSize(64, 64));
-    //b_sensors->setIcon(QPixmap("C:\\Prj\\LNP\\resources\\za.png"));
     b_sensors->setMinimumSize(QSize(120, 120));
 
     b_info = new QPushButton(this);
@@ -57,9 +56,8 @@ LNPRWin::LNPRWin(QWidget *parent)
     tech_process_frame->setGeometry(QRect(500,100,1000,600));
 
     lbl_adgesia = new QLabel(this);
-    //lbl_adgesia->setPixmap(QPixmap("C:\\Prj\\LNP\\resources\\adg.png"));
     lbl_adgesia->setFixedSize(QSize(200, 200));
-    //lbl_adgesia->setGeometry(QRect(560, 120, 560, 280));
+
     lbl_adgesia->setStyleSheet("background-color: black");
     /*блоки обработки*/
     frame_adgesia = new QFrame(this);
@@ -217,11 +215,11 @@ void LNPRWin::animateRun(QWidget *widget, enum AnimateUI ui_widget){
         anim->start();
         break;
     case AnimateUI::Frame:
-        anim->setStartValue(QColor(Qt::darkRed));
-        anim->setKeyValueAt(0.25f,QColor(Qt::white));
-        anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
+        anim->setStartValue(QColor(Qt::red));
+        //anim->setKeyValueAt(0.25f,QColor(Qt::white));
+        //anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
         anim->setEndValue(QColor(Qt::black));
-        anim->setDuration(12000);
+        anim->setDuration(1000);
         anim->setLoopCount(-1);
         anim->start();
         break;
@@ -241,7 +239,7 @@ void LNPRWin::keyPressEvent(QKeyEvent *event)
 {
     switch(event->type())
     {
-        case QEvent::TouchBegin:
+
         break;
 
     }

@@ -4,7 +4,7 @@ Exception::FileNotFoundException::FileNotFoundException()
 {
 int n = QMessageBox::information(nullptr, "", "", QMessageBox::Ok);
 }
-void Exception::FileNotFoundException::error_open_file()const {
+void Exception::FileNotFoundException::error_found_file() const {
 
 /*запись в файл настроек*/
 }
