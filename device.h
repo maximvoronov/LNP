@@ -1,14 +1,11 @@
 #ifndef DEVICE_H
 #define DEVICE_H
-
-#endif // DEVICE_H
-#include <QString>
-#include <vector>
+#include <qglobal.h>
 
 class Device
 {
 public:
-    virtual QString getName() const = 0;
+    virtual QString getName()  const = 0;
     virtual void setName(QString name) = 0;
 
     virtual QString getBrand() const = 0;
@@ -23,4 +20,8 @@ public:
     virtual void setHeight(qreal height) = 0;
     virtual qreal getHeight() const = 0;
 
+    virtual void setMass(qreal mass) = 0;
+    virtual qreal getMass() const = 0;
 };
+
+#endif // DEVICE_H
