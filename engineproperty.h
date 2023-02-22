@@ -5,8 +5,8 @@
 class EngineProperty
 {
 public:
-    enum EngineState{ON = 500, OFF};
-    enum EngineType{PNEVMO = 503};
+    enum EngineState{ ON = 500, OFF };
+    enum EngineType{ PNEVMO = 503, HYDRO };
     virtual qreal getShaftSize() const = 0;
     virtual void setShaftSize(qreal shaft_size) = 0;
     virtual qreal getTorque() const = 0;
