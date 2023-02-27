@@ -1,12 +1,11 @@
 #ifndef COIL_H
 #define COIL_H
 
-#endif // COIL_H
-#include <vector>
-#include <QString>
+#include <qglobal.h>
 
 class Coil
 {
+public:
     virtual void setVoltage(qreal voltage) = 0;
     virtual qreal getVoltage() const = 0;
 
@@ -18,5 +17,6 @@ class Coil
 
     virtual void setWattage(qreal wattage) = 0;
     virtual qreal getWattage() const = 0;
-
 };
+
+#endif // COIL_H
