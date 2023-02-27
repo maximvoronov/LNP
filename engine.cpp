@@ -59,3 +59,33 @@ qreal Engine::getWattage() const{
 qreal Engine::getRessistance() const{
     return this->ressistance;
 }
+void Engine::setTorque(qreal torque){
+    this->torque = torque;
+}
+qreal Engine::getTorque() const{
+    return this->torque;
+}
+void Engine::setDiameter(qreal diameter){
+    this->diameter = diameter;
+}
+qreal Engine::getDiameter() const{
+    return this->diameter;
+}
+void Engine::setShaftSize(qreal shaft_size){
+    this->shaftsize = shaft_size;
+}
+qreal Engine::getShaftSize() const{
+    return this->shaftsize;
+}
+void Engine::setInercia(qreal inercia){
+    this->inercia = inercia;
+}
+qreal Engine::getInercia() const{
+    return inercia;
+}
+void Engine::setMotoHours(quint32 moto_hours){
+    this->motohours = moto_hours;
+}
+quint32 Engine::getMotoHours() const{
+    return this->motohours;
+}

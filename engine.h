@@ -6,6 +6,7 @@
 #include <engineproperty.h>
 #include <QString>
 
+
 class Engine : public Device, public Coil, public EngineProperty
 {
 public:
@@ -39,11 +40,17 @@ public:
     qreal getDiameter() const override;
     void setShaftSize(qreal shaft_size) override;
     qreal getShaftSize() const override;
+    void setMotoHours(quint32 moto_hours) override;
+    quint32 getMotoHours() const override;
+private:
+    void operator=(const Engine&) = delete;
+    Engine(Engine&) = delete;
 private:
     QString name, brand;
     qreal width, length, height;
     qreal current, voltage, wattage, ressistance;
     qreal torque, inercia, diameter, shaftsize;
+    qint32 motohours;
 };
 
 #endif // ENGINE_H
