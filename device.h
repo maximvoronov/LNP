@@ -19,9 +19,11 @@ public:
 
     virtual void setHeight(qreal height) = 0;
     virtual qreal getHeight() const = 0;
-
     virtual void setMass(qreal mass) = 0;
     virtual qreal getMass() const = 0;
+
+    virtual void setMaterial(QString material) = 0;
+    virtual QString getMaterial() const = 0;
 };
 
 #endif // DEVICE_H
