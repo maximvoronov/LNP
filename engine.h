@@ -1,17 +1,24 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <device.h>
-#include <coil.h>
-#include <engineproperty.h>
+#include <idevice.h>
+#include <icoil.h>
+#include <iengineproperty.h>
 #include <QString>
+#include <bearing.h>
 
 
-class Engine : public Device, public Coil, public EngineProperty
+class Engine : public IDevice, public ICoil, public IEngineProperty
 {
 public:
+    enum class EngineState{ ON, OFF };
+    enum class EngineType{ PNEVMO, HYDRO };
     Engine();
-    /*Device*/
+    ~Engine();
+    Engine& operator=(const Engine&) = delete;
+    Engine(const Engine&) = delete;
+    void wattageEstimate(qreal current, qreal voltage) noexcept;
+    /*IDevice*/
     void setName(QString name) override;
     QString getName() const override;
     void setBrand(QString brand) override;
@@ -22,16 +29,16 @@ public:
     qreal getHeight() const override;
     void setLength(qreal lenght) override;
     qreal getLength() const override;
-    /*Coil*/
+    /*ICoil*/
     void setCurrent(qreal current) override;
     qreal getCurrent() const override;
     void setVoltage(qreal voltage) override;
     qreal getVoltage() const override;
-    void setWattage(qreal wattage) override;
+
     qreal getWattage() const override;
     void setRessistance(qreal ressistance) override;
     qreal getRessistance() const override;
-    /*EngineProperty*/
+    /*IEngineProperty*/
     void setTorque(qreal torque) override;
     qreal getTorque() const override;
     void setInercia(qreal inercia) override;
@@ -43,9 +50,7 @@ public:
     void setMotoHours(quint32 moto_hours) override;
     quint32 getMotoHours() const override;
 private:
-    void operator=(const Engine&) = delete;
-    Engine(Engine&) = delete;
-private:
+    Bearing *bearing = nullptr;
     QString name, brand;
     qreal width, length, height;
     qreal current, voltage, wattage, ressistance;
