@@ -11,9 +11,6 @@
 #include <QGroupBox>
 #include <QPainter>
 #include <QHBoxLayout>
-#include <QTouchEvent>
-#include <QTouchDevice>
-#include <QKeyEvent>
 #include <QFrame>
 #include <QPainter>
 #include <QPainterPath>
@@ -22,21 +19,40 @@
 #include <QGraphicsColorizeEffect>
 #include <QPropertyAnimation>
 #include <QKeyEvent>
+#include <QKeyEvent>
+#include <QCloseEvent>
+#include <infowindow.h>
+#include <QProgressBar>
+#include <QSettings>
+#include <QGuiApplication>
+#include <QScreen>
+#include <systemtray.h>
+#include <robot.h>
+#include <QPixmap>
+#include <preparationmodule.h>
+#include <equipmentwindow.h>
+#include <applicationmodulewindow.h>
 
 class LNPRWin : public QWidget
 {
     Q_OBJECT
 public:
-    enum AnimateUI{ Frame = 1001, Group, Button};
+    enum class AnimateUI{ Frame, Group, Button };
     LNPRWin(QWidget *parent = nullptr);
     ~LNPRWin();
-    int getWindowWidth() const;
-    int getWindowHeight() const;
-    void setWindowWidth(int width);
-    void setWindowHeight(int height);
+    bool readSettingsBar();
+    void writeSettings(QSettings* filename, QString group, QString name, int value);
+    int readSettings(QSettings* filename, QString group, QString name, int value);
+    void initEquipment();
     //void paintEvent(QPaintEvent *event) override;
     void animateRun(QWidget *widget, enum AnimateUI ui_widget);
     void keyPressEvent(QKeyEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+public
+    slots:
+    void onInfoWindow();
+    void onEquipmentWindow();
+    void onApplicationModuleWindow();
 private:
     QGroupBox *gbox = nullptr, *gbox_service = nullptr;
     QPalette pal;
@@ -47,7 +63,7 @@ private:
     QHBoxLayout *hbox = nullptr, *hbox_service = nullptr;
     QHBoxLayout *hbox_adgesia = nullptr, *hbox_term = nullptr, *hbox_robot, *hbox_put_resist = nullptr, *hbox_centr = nullptr, *hbox_term_stand = nullptr;
     QLabel *msg_info = nullptr, *msg_mech = nullptr;
-    QPushButton *box_loadcollect_r = nullptr, *box_tech = nullptr, *box_updown_load = nullptr, *block_filter = nullptr;
+    QPushButton *app_module = nullptr, *box_tech = nullptr, *dev_module = nullptr, *block_filter = nullptr, *box_chem_wash = nullptr;
     QPushButton *b_mech = nullptr, *b_sensors = nullptr, *b_info = nullptr;
     QPixmap *pix = nullptr;
     QFrame *message_frame = nullptr, *tech_process_frame = nullptr, *service_frame = nullptr, *block_frame = nullptr;
@@ -55,8 +71,16 @@ private:
     QFrame *frame_adgesia = nullptr, *frame_term = nullptr, *frame_robot = nullptr,  *frame_put_resist = nullptr, *frame_centr = nullptr, *frame_temr_stand = nullptr;
     QPropertyAnimation *anim = nullptr;
     QGraphicsColorizeEffect *effect = nullptr;
-
-private:
-    int width, height;
+    InfoWindow *infowin = nullptr;
+    QProgressBar *progress = nullptr;
+    QSettings *tech_settings = nullptr, *system_settings = nullptr;
+    LNPRWin* lnprwin = nullptr;
+    SystemTray *systray = nullptr;
+    std::shared_ptr<Robot> robot;
+    QPixmap *robot_pixmap = nullptr, *chem_block_pixmap = nullptr;
+    std::shared_ptr<PreparationModule> p_preparationModule;
+    EquipmentWindow *ew = nullptr;
+    ApplicationModuleWindow *aw = nullptr;
 };
+
 #endif // LNPRWIN_H

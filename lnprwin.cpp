@@ -10,6 +10,8 @@ LNPRWin::LNPRWin(QWidget *parent)
     /*load from config if not present to set it manualy*/
     tech_settings = new QSettings(QString("tech_settings.ini"), QSettings::IniFormat, this);
     system_settings = new QSettings(QString("system.ini"), QSettings::IniFormat, this);
+    systray = new SystemTray;
+    setWindowIcon(QIcon(":/resources/chip.png"));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screen_geometry = screen->geometry();
@@ -39,42 +41,51 @@ LNPRWin::LNPRWin(QWidget *parent)
     {
         writeSettings(system_settings, "Display", "Width", screen_width);
     }
+
     setGeometry(x, y, w, h);
     x++; y++;
-    box_loadcollect_r = new QPushButton(this);
-    box_loadcollect_r->setStyleSheet("background-color: black;");
-    box_loadcollect_r->setIconSize(QSize(64,64));
+
+    app_module = new QPushButton(this);
+    app_module->setStyleSheet("background-color: black;");
+    app_module->setIconSize(QSize(120,120));
+    app_module->setIcon(QIcon(":/resources/net.png"));
 
     box_tech = new QPushButton(this);
     box_tech->setStyleSheet("background-color: black");
-    box_tech->setIcon(QPixmap(":/resources/profile.jpg"));
-    box_tech->setIconSize(QSize(80,80));
+    box_tech->setIcon(QPixmap(":/resources/radio1.png"));
+    box_tech->setIconSize(QSize(140,140));
 
-    box_updown_load = new QPushButton(this);
-    box_updown_load->setStyleSheet("background-color: black");
+    dev_module = new QPushButton(this);
+    dev_module->setStyleSheet("background-color: black");
+    dev_module->setIcon(QIcon(":/resources/tech2.png"));
+    dev_module->setIconSize(QSize(80,80));
+
     block_filter = new QPushButton(this);
     block_filter->setStyleSheet("background-color: black");
-    box_loadcollect_r->setMinimumSize(QSize(120,120));
+    block_filter->setIcon(QIcon(":/resources/point.png"));
+    block_filter->setIconSize(QSize(120,120));
+    app_module->setMinimumSize(QSize(120,120));
     box_tech->setMinimumSize(QSize(120,120));
-    box_updown_load->setMinimumSize(QSize(120,120));
+    box_tech->setToolTip(QString("Подготовка технологического процесса"));
+    dev_module->setMinimumSize(QSize(120,120));
     block_filter->setMinimumSize(QSize(120,120));
 
     b_mech = new QPushButton(this);
     b_mech->setStyleSheet("background-color: black");
-    b_mech->setIconSize(QSize(64, 64));
-    b_mech->setIcon(QPixmap(":/resources/gear2.png"));
+    b_mech->setIconSize(QSize(60, 60));
+    b_mech->setIcon(QPixmap(":/resources/gear3.png"));
     b_mech->setMinimumSize(QSize(120, 120));
 
     b_sensors = new QPushButton(this);
     b_sensors->setStyleSheet("background-color: black");
-    b_sensors->setIconSize(QSize(64, 64));
+    b_sensors->setIconSize(QSize(120, 120));
+    b_sensors->setIcon(QIcon(":/resources/exit3.png"));
     b_sensors->setMinimumSize(QSize(120, 120));
 
     b_info = new QPushButton(this);
     b_info->setStyleSheet("background-color: black");
-    b_info->setIconSize(QSize(64, 64));
-    b_info->setIcon(QPixmap(":/resources/i_1.png"));
-    b_info->setMinimumSize(QSize(120, 120));
+    b_info->setIconSize(QSize(120, 120));
+    b_info->setIcon(QPixmap(":/resources/way.png"));
 
     main_frame = new QFrame(this);
     main_frame->setGeometry(QRect(20, 20, 1895, 1050));
@@ -97,7 +108,6 @@ LNPRWin::LNPRWin(QWidget *parent)
     frame_adgesia = new QFrame(this);
     frame_adgesia->setGeometry(QRect(420, 120, 460, 300));
     frame_adgesia->setToolTip(QString("Блок наненения промоутера адгезии ГМДС"));
-    //frame_adgesia->setStyleSheet("background-radius: 15 15 15 15; border-size: 5px; border: solid; border-width: 5px; border-color: cadetblue; border-radius: 12 12 12 12");
 
     hbox_adgesia = new QHBoxLayout;
     hbox_adgesia->setMargin(15);
@@ -109,6 +119,10 @@ LNPRWin::LNPRWin(QWidget *parent)
     lbl_term = new QLabel(this);
     lbl_term->setFixedSize(QSize(200,200));
     lbl_term->setStyleSheet("background-color: black");
+    chem_block_pixmap = new QPixmap(":/resources/chem_block.png");
+    lbl_term->resize(chem_block_pixmap->size());
+
+    lbl_term->setPixmap(*chem_block_pixmap);
 
     frame_term = new QFrame(this);
     frame_term->setGeometry(QRect(920,120,460,300));
@@ -122,7 +136,9 @@ LNPRWin::LNPRWin(QWidget *parent)
     lbl_robot = new QLabel(this);
     lbl_robot->setStyleSheet("background-color: black");
     lbl_robot->setFixedSize(QSize(140, 140));
+    robot_pixmap = new QPixmap(":/resources/robot2.png");
 
+    lbl_robot->setPixmap(*robot_pixmap);
     hbox_robot = new QHBoxLayout;
     hbox_robot->addWidget(lbl_robot);
     hbox_robot->setGeometry(QRect(420,470,180,180));
@@ -186,8 +202,8 @@ LNPRWin::LNPRWin(QWidget *parent)
     vboxL->setMargin(15);
     vboxL->setSpacing(35);
 
-    vboxL->addWidget(box_loadcollect_r);
-    vboxL->addWidget(box_updown_load);
+    vboxL->addWidget(app_module);
+    vboxL->addWidget(dev_module);
     vboxL->addWidget(box_tech);
     vboxL->addWidget(block_filter);
 
@@ -201,8 +217,8 @@ LNPRWin::LNPRWin(QWidget *parent)
 
     gbox = new QGroupBox(this);
     gbox->setGeometry(50,100,160,600);
+    //gbox->setTitle(QString("dsafdsfdsfdsfdsfdsfdsfds"));
     gbox->setLayout(vboxL);
-
     gbox_service = new QGroupBox(this);
     gbox_service->setGeometry(1710,100,160,600);
     gbox_service->setLayout(vboxR);
@@ -213,16 +229,63 @@ LNPRWin::LNPRWin(QWidget *parent)
                                      "border-width: 5px;"
                                      "border-color: cadetblue; "
                                      "border-radius: 30 30 30 30;");
+    initEquipment();
+    /*
     try {
         bool res = readSettingsBar();
     } catch (Exception::FileOpenException e){
-        e.error_open_file();
+
+    e.error_open_file();
     }
+    */
     animateRun(b_mech, AnimateUI::Button);
+    animateRun(b_info, AnimateUI::Button);
     animateRun(b_sensors, AnimateUI::Button);
     animateRun(additional_frame, AnimateUI::Frame);
     animateRun(frame_robot, AnimateUI::Frame);
+    animateRun(dev_module, AnimateUI::Button);
+    animateRun(app_module, AnimateUI::Button);
+    animateRun(box_tech, AnimateUI::Button);
+    animateRun(block_filter, AnimateUI::Button);
     connect(b_info, SIGNAL(clicked()), this, SLOT(onInfoWindow()));
+    connect(dev_module, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
+    connect(box_tech, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
+}
+
+void LNPRWin::closeEvent(QCloseEvent *event){
+    switch (event->type()) {
+    }
+}
+
+void LNPRWin::onEquipmentWindow(){
+    ew = new EquipmentWindow(this);
+    /*
+    ew->setStyleSheet("background-radius: 0 0 0 0; "
+                                     "border-size: 5px; border: solid;"
+                                     "border-width: 5px;"
+                                     "border-color: cadetblue;"
+                                     "border-radius: 0 0 0 0");
+    */
+    //infowin->tedit->setText(brake->getMaterial());
+    ew->show();
+}
+void LNPRWin::onApplicationModuleWindow(){
+    aw = new ApplicationModuleWindow(this);
+    aw->show();
+}
+
+void LNPRWin::initEquipment(){
+    //robot = new Robot();
+    //QString engine = robot->sd->getName()
+    //brake = new Brake(1223, 12,12, 12, 1200,"fdsfdsf", "sfdsfdsfdsf", "Пластик", 211, 54, 32);
+    robot = std::make_shared<Robot>();
+    p_preparationModule = std::make_shared<PreparationModule>();
+
+    //QString s = robot.operator->()->sd.get()->getName();
+
+//    brake = new Brake();
+//    brake->setMaterial(QString("Металл, Пластик"));
+
 }
 
 bool LNPRWin::readSettingsBar(){
@@ -242,12 +305,11 @@ bool LNPRWin::readSettingsBar(){
     //progress->setAlignment(Qt::AlignCenter);
     /*вычислить и применить маску*/
     //progress->setMask();
-
     progress->setValue(15);
     progress->setTextVisible(true);
-    progress->setFont(QFont("Ariel", 25, QFont::Bold));
+    progress->setFont(QFont("Ariel",25,QFont::Bold));
     progress->setWindowFlag(Qt::FramelessWindowHint);
-    pal.setBrush(backgroundRole(), QBrush(Qt::black));
+    pal.setBrush(backgroundRole(),QBrush(Qt::black));
     progress->setPalette(pal);
     progress->setVisible(true);
     progress->setOrientation(Qt::Horizontal);
@@ -277,12 +339,12 @@ void LNPRWin::onInfoWindow(){
                                      "border-width: 5px;"
                                      "border-color: cadetblue;"
                                      "border-radius: 0 0 0 0");
+
+    //infowin->tedit->setText(brake->getMaterial());
     infowin->show();
 }
 
-LNPRWin::~LNPRWin()
-{
-    delete lnprwin;
+LNPRWin::~LNPRWin(){
 }
 
 void LNPRWin::animateRun(QWidget *widget, enum AnimateUI ui_widget){
@@ -325,7 +387,6 @@ void LNPRWin::keyPressEvent(QKeyEvent *event)
     switch(event->type())
     {
         break;
-
     }
 }
 
