@@ -45,29 +45,35 @@ LNPRWin::LNPRWin(QWidget *parent)
     setGeometry(x, y, w, h);
     x++; y++;
 
-    app_module = new QPushButton(this);
-    app_module->setStyleSheet("background-color: black;");
-    app_module->setIconSize(QSize(120,120));
-    app_module->setIcon(QIcon(":/resources/net.png"));
+    module_app = new QPushButton(this);
+    module_app->setStyleSheet("background-color: black;");
+    module_app->setIconSize(QSize(120,120));
+    module_app->setIcon(QIcon(":/resources/net.png"));
+    module_app->setToolTip(QString("Модуль нанесения"));
+    //module_app->setVisible(true);
 
-    box_tech = new QPushButton(this);
-    box_tech->setStyleSheet("background-color: black");
-    box_tech->setIcon(QPixmap(":/resources/radio1.png"));
-    box_tech->setIconSize(QSize(140,140));
+    module_dev = new QPushButton(this);
+    module_dev->setStyleSheet("background-color: black");
+    module_dev->setIcon(QIcon(":/resources/tech2.png"));
+    module_dev->setIconSize(QSize(80,80));
+    module_dev->setToolTip(QString("Модуль проявления"));
+    module_dev->setDisabled(true);
+    module_dev->setVisible(false);
 
-    dev_module = new QPushButton(this);
-    dev_module->setStyleSheet("background-color: black");
-    dev_module->setIcon(QIcon(":/resources/tech2.png"));
-    dev_module->setIconSize(QSize(80,80));
+    module_wash = new QPushButton(this);
+    module_wash->setStyleSheet("background-color: black");
+    module_wash->setIcon(QPixmap(":/resources/radio1.png"));
+    module_wash->setIconSize(QSize(140,140));
+    module_wash->setMinimumSize(QSize(120,120));
+    module_wash->setToolTip(QString("Модуль индивидуальной гидромеханической\nотмывки пластин"));
 
     block_filter = new QPushButton(this);
     block_filter->setStyleSheet("background-color: black");
     block_filter->setIcon(QIcon(":/resources/point.png"));
     block_filter->setIconSize(QSize(120,120));
-    app_module->setMinimumSize(QSize(120,120));
-    box_tech->setMinimumSize(QSize(120,120));
-    box_tech->setToolTip(QString("Подготовка технологического процесса"));
-    dev_module->setMinimumSize(QSize(120,120));
+    module_app->setMinimumSize(QSize(120,120));
+
+    module_dev->setMinimumSize(QSize(120,120));
     block_filter->setMinimumSize(QSize(120,120));
 
     b_mech = new QPushButton(this);
@@ -202,9 +208,9 @@ LNPRWin::LNPRWin(QWidget *parent)
     vboxL->setMargin(15);
     vboxL->setSpacing(35);
 
-    vboxL->addWidget(app_module);
-    vboxL->addWidget(dev_module);
-    vboxL->addWidget(box_tech);
+    vboxL->addWidget(module_app);
+    vboxL->addWidget(module_dev);
+    vboxL->addWidget(module_wash);
     vboxL->addWidget(block_filter);
 
     vboxR = new QVBoxLayout(this);
@@ -243,13 +249,13 @@ LNPRWin::LNPRWin(QWidget *parent)
     animateRun(b_sensors, AnimateUI::Button);
     animateRun(additional_frame, AnimateUI::Frame);
     animateRun(frame_robot, AnimateUI::Frame);
-    animateRun(dev_module, AnimateUI::Button);
-    animateRun(app_module, AnimateUI::Button);
-    animateRun(box_tech, AnimateUI::Button);
+    //animateRun(module_dev, AnimateUI::Button);
+    animateRun(module_app, AnimateUI::Button);
+    animateRun(module_wash, AnimateUI::Button);
     animateRun(block_filter, AnimateUI::Button);
     connect(b_info, SIGNAL(clicked()), this, SLOT(onInfoWindow()));
-    connect(dev_module, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
-    connect(box_tech, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
+    connect(module_app, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
+    connect(module_wash, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
 }
 
 void LNPRWin::closeEvent(QCloseEvent *event){

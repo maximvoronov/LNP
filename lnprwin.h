@@ -63,7 +63,7 @@ private:
     QHBoxLayout *hbox = nullptr, *hbox_service = nullptr;
     QHBoxLayout *hbox_adgesia = nullptr, *hbox_term = nullptr, *hbox_robot, *hbox_put_resist = nullptr, *hbox_centr = nullptr, *hbox_term_stand = nullptr;
     QLabel *msg_info = nullptr, *msg_mech = nullptr;
-    QPushButton *app_module = nullptr, *box_tech = nullptr, *dev_module = nullptr, *block_filter = nullptr, *box_chem_wash = nullptr;
+    QPushButton *module_app = nullptr, *module_wash = nullptr, *module_dev = nullptr, *block_filter = nullptr, *box_chem_wash = nullptr;
     QPushButton *b_mech = nullptr, *b_sensors = nullptr, *b_info = nullptr;
     QPixmap *pix = nullptr;
     QFrame *message_frame = nullptr, *tech_process_frame = nullptr, *service_frame = nullptr, *block_frame = nullptr;
