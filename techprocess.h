@@ -13,7 +13,6 @@ class TechProcess
     bool checkProcessStatus();
 private:
     QThread *thread = nullptr;
-
 };
 
 #endif // TECHPROCESS_H
