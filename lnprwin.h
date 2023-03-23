@@ -53,6 +53,7 @@ public
     void onInfoWindow();
     void onEquipmentWindow();
     void onApplicationModuleWindow();
+    void onExit();
 private:
     QGroupBox *gbox = nullptr, *gbox_service = nullptr;
     QPalette pal;
@@ -64,7 +65,7 @@ private:
     QHBoxLayout *hbox_adgesia = nullptr, *hbox_term = nullptr, *hbox_robot, *hbox_put_resist = nullptr, *hbox_centr = nullptr, *hbox_term_stand = nullptr;
     QLabel *msg_info = nullptr, *msg_mech = nullptr;
     QPushButton *module_app = nullptr, *module_wash = nullptr, *module_dev = nullptr, *block_filter = nullptr, *box_chem_wash = nullptr;
-    QPushButton *b_mech = nullptr, *b_sensors = nullptr, *b_info = nullptr;
+    QPushButton *b_mech = nullptr, *b_sensors = nullptr, *b_info = nullptr, *b_exit = nullptr;
     QPixmap *pix = nullptr;
     QFrame *message_frame = nullptr, *tech_process_frame = nullptr, *service_frame = nullptr, *block_frame = nullptr;
     QLabel *lbl_adgesia = nullptr, *lbl_term = nullptr, *lbl_robot = nullptr, *lbl_put_resist = nullptr, *lbl_centr = nullptr, *lbl_term_stand = nullptr;

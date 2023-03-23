@@ -48,14 +48,17 @@ LNPRWin::LNPRWin(QWidget *parent)
     module_app = new QPushButton(this);
     module_app->setStyleSheet("background-color: black;");
     module_app->setIconSize(QSize(120,120));
+    module_app->setMinimumSize(QSize(120,120));
     module_app->setIcon(QIcon(":/resources/net.png"));
     module_app->setToolTip(QString("Модуль нанесения"));
+
     //module_app->setVisible(true);
 
     module_dev = new QPushButton(this);
     module_dev->setStyleSheet("background-color: black");
     module_dev->setIcon(QIcon(":/resources/tech2.png"));
     module_dev->setIconSize(QSize(80,80));
+    module_dev->setMinimumSize(QSize(120,120));
     module_dev->setToolTip(QString("Модуль проявления"));
     module_dev->setDisabled(true);
     module_dev->setVisible(false);
@@ -71,10 +74,14 @@ LNPRWin::LNPRWin(QWidget *parent)
     block_filter->setStyleSheet("background-color: black");
     block_filter->setIcon(QIcon(":/resources/point.png"));
     block_filter->setIconSize(QSize(120,120));
-    module_app->setMinimumSize(QSize(120,120));
-
-    module_dev->setMinimumSize(QSize(120,120));
     block_filter->setMinimumSize(QSize(120,120));
+
+    b_exit = new QPushButton(this);
+    b_exit->setText(QString("Закрыть"));
+    b_exit->setStyleSheet("background-color: black; color: cadetblue");
+    b_exit->setFont(QFont("Ariel",12, QFont::Bold));
+    b_exit->setIconSize(QSize(120,120));
+    b_exit->setMinimumSize(QSize(120,120));
 
     b_mech = new QPushButton(this);
     b_mech->setStyleSheet("background-color: black");
@@ -99,20 +106,20 @@ LNPRWin::LNPRWin(QWidget *parent)
                               "border: solid; border-width: 15px; border-color: cadetblue; "
                               "border-radius: 30 30 30 30");
     additional_frame = new QFrame(this);
-    additional_frame->setGeometry(560, 60, 400, 40);
+    additional_frame->setGeometry(560,60,400,40);
     additional_frame->setStyleSheet("background-radius: 15 15 15 15; border-size: 5px; "
                                     "border: solid; border-width: 5px; border-color: cadetblue; "
                                     "border-radius: 12 12 12 12");
     tech_process_frame = new QFrame(this);
-    tech_process_frame->setGeometry(QRect(400, 100, 1000, 600));
+    tech_process_frame->setGeometry(QRect(400,100,1000,600));
 
     lbl_adgesia = new QLabel(this);
-    lbl_adgesia->setFixedSize(QSize(200, 200));
+    lbl_adgesia->setFixedSize(QSize(200,200));
 
     lbl_adgesia->setStyleSheet("background-color: black");
     /*блоки обработки*/
     frame_adgesia = new QFrame(this);
-    frame_adgesia->setGeometry(QRect(420, 120, 460, 300));
+    frame_adgesia->setGeometry(QRect(420,120,460,300));
     frame_adgesia->setToolTip(QString("Блок наненения промоутера адгезии ГМДС"));
 
     hbox_adgesia = new QHBoxLayout;
@@ -188,12 +195,11 @@ LNPRWin::LNPRWin(QWidget *parent)
     message_frame = new QFrame(this);
     message_frame->setGeometry(QRect(600,800,800,200));
 
-    service_frame = new QFrame(this);
-    service_frame->setGeometry(QRect(50,800,500,200));
+    //service_frame = new QFrame(this);
+    //service_frame->setGeometry(QRect(50,800,500,200));
 
     block_frame = new QFrame(this);
     block_frame->setGeometry(QRect(1450,800,420,200));
-
     msg_info = new QLabel(this);
     msg_info->setStyleSheet("background: black; text-align: center; color: white");
     msg_info->setFont(QFont("Ariel", 25, QFont::Bold));
@@ -212,21 +218,22 @@ LNPRWin::LNPRWin(QWidget *parent)
     vboxL->addWidget(module_dev);
     vboxL->addWidget(module_wash);
     vboxL->addWidget(block_filter);
+    vboxL->addWidget(b_exit);
 
-    vboxR = new QVBoxLayout(this);
+    vboxR = new QVBoxLayout;
     vboxR->setMargin(15);
     vboxR->setSpacing(35);
 
     vboxR->addWidget(b_sensors);
     vboxR->addWidget(b_mech);
     vboxR->addWidget(b_info);
-
+    /*Левый*/
     gbox = new QGroupBox(this);
-    gbox->setGeometry(50,100,160,600);
-    //gbox->setTitle(QString("dsafdsfdsfdsfdsfdsfdsfds"));
+    gbox->setGeometry(50,80,160,940);
     gbox->setLayout(vboxL);
+    /*Правый*/
     gbox_service = new QGroupBox(this);
-    gbox_service->setGeometry(1710,100,160,600);
+    gbox_service->setGeometry(1710,80,160,500);
     gbox_service->setLayout(vboxR);
 
     pal.setBrush(backgroundRole(),QBrush(QPixmap(":/resources/scheme.jpg")));
@@ -254,13 +261,19 @@ LNPRWin::LNPRWin(QWidget *parent)
     animateRun(module_wash, AnimateUI::Button);
     animateRun(block_filter, AnimateUI::Button);
     connect(b_info, SIGNAL(clicked()), this, SLOT(onInfoWindow()));
-    connect(module_app, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
-    connect(module_wash, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
+    connect(module_app, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
+    connect(module_wash, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
+    connect(b_exit, SIGNAL(clicked()), this, SLOT(onExit()));
 }
 
 void LNPRWin::closeEvent(QCloseEvent *event){
     switch (event->type()) {
     }
+}
+
+void LNPRWin::onExit(){
+    /*Сохранение настроек тех.процесса*/
+    close();
 }
 
 void LNPRWin::onEquipmentWindow(){
