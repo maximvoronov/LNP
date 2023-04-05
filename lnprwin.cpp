@@ -12,6 +12,8 @@ LNPRWin::LNPRWin(QWidget *parent)
     system_settings = new QSettings(QString("system.ini"), QSettings::IniFormat, this);
     systray = new SystemTray;
     setWindowIcon(QIcon(":/resources/chip.png"));
+    setWindowFlag(Qt::FramelessWindowHint);
+    setWindowState(Qt::WindowFullScreen);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screen_geometry = screen->geometry();
@@ -26,7 +28,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     writeSettings(system_settings, "MainFrame", "Height", screen_height/2);
     writeSettings(system_settings, "MainFrame", "Width", screen_width/2);
 
-    int h,w,x,y;
+    int h, w, x, y;
     h = w = x = y = 0;
     h = readSettings(system_settings, "Display", "Height", h);
     w = readSettings(system_settings, "Display", "Width", w);
@@ -41,9 +43,13 @@ LNPRWin::LNPRWin(QWidget *parent)
     {
         writeSettings(system_settings, "Display", "Width", screen_width);
     }
-
-    setGeometry(x, y, w, h);
+    //setGeometry(0, 0, 1920, 1080);
+    //setGeometry(x, y, w, h);
     x++; y++;
+    popup = new PopUp();
+    popup->setGeometry(QRect(400,400,200,100));
+    popup->setPopupText("Робот не включён");
+    popup->show();
 
     module_app = new QPushButton(this);
     module_app->setStyleSheet("background-color: black;");
@@ -57,16 +63,16 @@ LNPRWin::LNPRWin(QWidget *parent)
     module_dev = new QPushButton(this);
     module_dev->setStyleSheet("background-color: black");
     module_dev->setIcon(QIcon(":/resources/tech2.png"));
-    module_dev->setIconSize(QSize(80,80));
+    module_dev->setIconSize(QSize(120,120));
     module_dev->setMinimumSize(QSize(120,120));
     module_dev->setToolTip(QString("Модуль проявления"));
-    module_dev->setDisabled(true);
-    module_dev->setVisible(false);
+    //module_dev->setDisabled(true);
+    //module_dev->setVisible(false);
 
     module_wash = new QPushButton(this);
     module_wash->setStyleSheet("background-color: black");
     module_wash->setIcon(QPixmap(":/resources/radio1.png"));
-    module_wash->setIconSize(QSize(140,140));
+    module_wash->setIconSize(QSize(120,120));
     module_wash->setMinimumSize(QSize(120,120));
     module_wash->setToolTip(QString("Модуль индивидуальной гидромеханической\nотмывки пластин"));
 
@@ -132,7 +138,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     lbl_term = new QLabel(this);
     lbl_term->setFixedSize(QSize(200,200));
     lbl_term->setStyleSheet("background-color: black");
-    chem_block_pixmap = new QPixmap(":/resources/chem_block.png");
+    chem_block_pixmap = new QPixmap(":/resources/1.png");
     lbl_term->resize(chem_block_pixmap->size());
 
     lbl_term->setPixmap(*chem_block_pixmap);
@@ -149,7 +155,7 @@ LNPRWin::LNPRWin(QWidget *parent)
     lbl_robot = new QLabel(this);
     lbl_robot->setStyleSheet("background-color: black");
     lbl_robot->setFixedSize(QSize(140, 140));
-    robot_pixmap = new QPixmap(":/resources/robot2.png");
+    robot_pixmap = new QPixmap(":/resources/robot3.png");
 
     lbl_robot->setPixmap(*robot_pixmap);
     hbox_robot = new QHBoxLayout;
@@ -203,7 +209,6 @@ LNPRWin::LNPRWin(QWidget *parent)
     msg_info = new QLabel(this);
     msg_info->setStyleSheet("background: black; text-align: center; color: white");
     msg_info->setFont(QFont("Ariel", 25, QFont::Bold));
-    //msg_info->setText(QString("Внимание: Датчик не выключен!"));
     msg_info->setFixedSize(QSize(700, 140));
     msg_info->setAlignment(Qt::AlignCenter);
     hbox_msg_info = new QHBoxLayout;
@@ -260,10 +265,12 @@ LNPRWin::LNPRWin(QWidget *parent)
     animateRun(module_app, AnimateUI::Button);
     animateRun(module_wash, AnimateUI::Button);
     animateRun(block_filter, AnimateUI::Button);
+
     connect(b_info, SIGNAL(clicked()), this, SLOT(onInfoWindow()));
     connect(module_app, SIGNAL(clicked()), this, SLOT(onApplicationModuleWindow()));
     connect(module_wash, SIGNAL(clicked()), this, SLOT(onEquipmentWindow()));
     connect(b_exit, SIGNAL(clicked()), this, SLOT(onExit()));
+
 }
 
 void LNPRWin::closeEvent(QCloseEvent *event){
@@ -298,7 +305,6 @@ void LNPRWin::initEquipment(){
     //QString engine = robot->sd->getName()
     //brake = new Brake(1223, 12,12, 12, 1200,"fdsfdsf", "sfdsfdsfdsf", "Пластик", 211, 54, 32);
     robot = std::make_shared<Robot>();
-    p_preparationModule = std::make_shared<PreparationModule>();
 
     //QString s = robot.operator->()->sd.get()->getName();
 
@@ -313,11 +319,15 @@ bool LNPRWin::readSettingsBar(){
     progress = new QProgressBar();
     progress->setWindowFlag(Qt::FramelessWindowHint);
     progress->setGeometry(QRect(300,500,1300,80));
+    /*
     progress->setStyleSheet("background-radius: 30 30 30 30; border-size: 55px;"
                             "background-color: black;"
                             "border: solid; border-width: 5px; border-color: cadetblue;"
                             "border-radius: 30 30 30 30;"
                             "text-align: center; color: cadetblue;");
+    */
+    progress->setStyleSheet("border: 5px  solid cadetblue; border-radius: 5px; ::chunk background-color: pink; "
+                            "width: 10px; margin: 0.5px");
     progress->setRange(0, 100);
     progress->setMinimumWidth(200);
 
@@ -373,7 +383,6 @@ void LNPRWin::animateRun(QWidget *widget, enum AnimateUI ui_widget){
     switch (ui_widget) {
     case AnimateUI::Button:
         anim->setStartValue(QColor(Qt::darkRed));
-        //anim->setKeyValueAt(0.25f,QColor(Qt::cyan));
         anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
         anim->setEndValue(QColor(Qt::black));
         anim->setDuration(3000);
@@ -382,8 +391,6 @@ void LNPRWin::animateRun(QWidget *widget, enum AnimateUI ui_widget){
         break;
     case AnimateUI::Frame:
         anim->setStartValue(QColor(Qt::red));
-        //anim->setKeyValueAt(0.25f,QColor(Qt::white));
-        //anim->setKeyValueAt(0.55f,QColor(Qt::darkGray));
         anim->setEndValue(QColor(Qt::black));
         anim->setDuration(1000);
         anim->setLoopCount(-1);

@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <lnprwin.h>
 #include <QApplication>
+#include <popup.h>
 
 class PasswordWindow : public QWidget
 {
@@ -24,5 +25,6 @@ private:
     QFrame *frame = nullptr;
     QComboBox *combo = nullptr;
     QPushButton *pb_close = nullptr, *pb_run = nullptr;
+    PopUp *popup = nullptr;
 };
 #endif // PASSWORDWINDOW_H

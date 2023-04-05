@@ -6,8 +6,7 @@
 #include <QString>
 #include <QSystemTrayIcon>
 
-
-SystemTray::SystemTray(QWidget* pwgt /*=0*/): QLabel("<H1>Application Window</H1>",pwgt)
+SystemTray::SystemTray(QWidget* pwgt): QLabel("<H1>Application Window</H1>", pwgt)
   ,m_bIconSwitcher(false)
 {
     setWindowTitle("System Tray");
@@ -16,16 +15,22 @@ SystemTray::SystemTray(QWidget* pwgt /*=0*/): QLabel("<H1>Application Window</H1
                   "border-color: cadetblue; "
                   "border-radius: 30 30 30 30;"
                   "background: black");
-    setFont(QFont("Arial", 12, Qt::white));
-    setGeometry(1720,800,200,200);
-    QAction* pactShowHide = new QAction("&Show/Hide Application Window", this);
-    connect(pactShowHide,SIGNAL(triggered()),this, SLOT(slotShowHide()));
-    QAction* pactShowMessage = new QAction("S&how Message", this);
-    connect(pactShowMessage,SIGNAL(triggered()),this, SLOT(slotShowMessage()));
-    QAction* pactChangeIcon = new QAction("&Change Icon", this);
-    connect(pactChangeIcon,SIGNAL(triggered()),this, SLOT(slotChangeIcon()));
-    QAction* pactQuit = new QAction("&Quit", this);
-    connect(pactQuit, SIGNAL(triggered()), qApp, SLOT(quit() ));
+    //setFont(QFont("Arial", 25, Qt::white));
+    setGeometry(1720, 800, 200, 200);
+    pactShowHide = new QAction("&Перейти/Свернуть диспечерское управление сбора данных", this);
+    pactShowHide->setFont(QFont("Arial", 25, Qt::white));
+    connect(pactShowHide,SIGNAL(triggered()), this, SLOT(slotShowHide()));
+    pactShowMessage = new QAction(QString("Текущее состояние: "), this);
+    pactShowMessage->setFont(QFont("Arial", 25, Qt::red));
+    connect(pactShowMessage,SIGNAL(triggered()), this, SLOT(slotShowMessage()));
+    pactChangeIcon = new QAction("&О системе", this);
+    pactChangeIcon->setFont(QFont("Arial", 25, Qt::red));
+
+    connect(pactChangeIcon,SIGNAL(triggered()), this, SLOT(slotChangeIcon()));
+    pactQuit = new QAction("&Закрыть систему", this);
+    pactQuit->setFont(QFont("Arial", 25, Qt::red));
+
+    connect(pactQuit, SIGNAL(triggered()), this, SLOT(quit()));
     m_ptrayIconMenu = new QMenu(this);
     m_ptrayIconMenu->addAction(pactShowHide);
     m_ptrayIconMenu->addAction(pactShowMessage);
@@ -33,7 +38,7 @@ SystemTray::SystemTray(QWidget* pwgt /*=0*/): QLabel("<H1>Application Window</H1
     m_ptrayIconMenu->addAction(pactQuit);
     m_ptrayIcon = new QSystemTrayIcon(this);
     m_ptrayIcon->setContextMenu(m_ptrayIconMenu);
-    m_ptrayIcon->setToolTip("System Tray");
+    //m_ptrayIcon->setToolTip(QString(""));
     slotChangeIcon();
     m_ptrayIcon->show();
 }
@@ -43,6 +48,9 @@ void SystemTray::closeEvent(QCloseEvent * pe)
     if (m_ptrayIcon->isVisible())
     {
         hide();
+    }
+    else{
+        pe->accept();
     }
 }
 
@@ -54,13 +62,13 @@ void SystemTray::slotShowHide()
 void SystemTray::slotShowMessage()
 {
     m_ptrayIcon->showMessage("For your information", "You have selected the" "\"Show Message!\" option",
-                             QSystemTrayIcon::Information,3000);
+                             QSystemTrayIcon::Information, 3000);   
 }
 
 void SystemTray::slotChangeIcon()
 {
     m_bIconSwitcher = !m_bIconSwitcher;
-    QString strPixName = m_bIconSwitcher ? ":/bearing.jpg"
-                                         : ":/gear2.png";
+    QString strPixName = m_bIconSwitcher ? ":/resources/bearing.jpg"
+                                         : ":/resources/gear2.png";
     m_ptrayIcon->setIcon(QPixmap(strPixName));
 }

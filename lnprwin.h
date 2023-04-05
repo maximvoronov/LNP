@@ -29,9 +29,10 @@
 #include <systemtray.h>
 #include <robot.h>
 #include <QPixmap>
-#include <preparationmodule.h>
 #include <equipmentwindow.h>
 #include <applicationmodulewindow.h>
+#include <messagebox.h>
+#include <popup.h>
 
 class LNPRWin : public QWidget
 {
@@ -79,9 +80,10 @@ private:
     SystemTray *systray = nullptr;
     std::shared_ptr<Robot> robot;
     QPixmap *robot_pixmap = nullptr, *chem_block_pixmap = nullptr;
-    std::shared_ptr<PreparationModule> p_preparationModule;
     EquipmentWindow *ew = nullptr;
     ApplicationModuleWindow *aw = nullptr;
+    MessageBox *msg = nullptr;
+    PopUp *popup = nullptr;
 };
 
 #endif // LNPRWIN_H

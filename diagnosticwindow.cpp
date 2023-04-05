@@ -1,6 +1,6 @@
 #include "diagnosticwindow.h"
 
-DiagnosticWindow::DiagnosticWindow(QWidget *parent) : QWidget(parent)
+DiagnosticWindow::DiagnosticWindow(QWidget *parent) : QStackedWidget(parent)
 {
 
 }

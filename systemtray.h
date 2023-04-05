@@ -1,26 +1,26 @@
 #ifndef SYSTEMTRAY_H
 #define SYSTEMTRAY_H
-#include <QtGui>
-#pragma once
-
+#include <QMenu>
 #include <QLabel>
-class QSystemTrayIcon;
-class QMenu;
+#include <QSystemTrayIcon>
+#include <QAction>
+
 class SystemTray : public QLabel
 {
     Q_OBJECT
-private:
-    QSystemTrayIcon* m_ptrayIcon;
-    QMenu* m_ptrayIconMenu;
-    bool m_bIconSwitcher;
-protected:
-    virtual void closeEvent(QCloseEvent*);
 public:
     SystemTray(QWidget* pwgt = nullptr);
 public slots:
     void slotShowHide();
     void slotShowMessage();
     void slotChangeIcon();
+protected:
+    virtual void closeEvent(QCloseEvent*);
+private:
+    QSystemTrayIcon* m_ptrayIcon = nullptr;
+    QMenu* m_ptrayIconMenu = nullptr;
+    bool m_bIconSwitcher;
+    QAction *pactShowHide = nullptr, *pactShowMessage = nullptr, *pactChangeIcon = nullptr, *pactQuit = nullptr;
 };
 
 #endif // SYSTEMTRAY_H

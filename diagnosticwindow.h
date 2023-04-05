@@ -5,8 +5,9 @@
 #include <QImage>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QStackedWidget>
 
-class DiagnosticWindow : public QWidget
+class DiagnosticWindow : public QStackedWidget
 {
     Q_OBJECT
 public:
@@ -15,7 +16,6 @@ signals:
     private:
     QImage *img;
     QHBoxLayout hbox;
-
 };
 
 #endif // DIAGNOSTICWINDOW_H

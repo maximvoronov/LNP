@@ -3,14 +3,14 @@
 MechMovePushers::MechMovePushers(){
 }
 
-MechMovePushers::MechMovePushers(std::shared_ptr<Engine> engine, std::shared_ptr<Bearing> bearing)
+MechMovePushers::MechMovePushers(std::shared_ptr<Engine> engine)
 {
-    engine = std::make_shared<Engine>();
-    engine->setName(QString("dsfdsf"));
-    bearing = std::make_shared<Bearing>();
-    bearing->setr(12);
-}
+    Q_UNUSED(engine);
+   // engine = std::make_shared<Engine>();
+    //engine->setName(QString("dsfdsf"));
+    //QString s = engine.get()->getMaterial();
 
+}
 
 MechMovePushers::~MechMovePushers(){
 }

@@ -9,8 +9,7 @@ class ChemicalBlock : public IDevice
 public:
     ChemicalBlock();
     ~ChemicalBlock();
-    enum class WASHTYPE { PVA_PAC, PVA_H202, H202, PVA_PAC_H2O2 };
-
+    enum class SOLUTION{ PVA_PAC, PVA_H202, H202, PVA_PAC_H2O2 };
     void setMass(qreal mass) override;
     qreal getMass() const override;
     void setName(QString name) override;

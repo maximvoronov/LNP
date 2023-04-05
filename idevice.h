@@ -5,7 +5,7 @@
 class IDevice
 {
 public:
-
+    enum class STATE {ON, OFF};
     virtual QString getName()  const = 0;
     virtual void setName(QString name) = 0;
 
@@ -25,6 +25,9 @@ public:
 
     virtual void setMaterial(QString material) = 0;
     virtual QString getMaterial() const = 0;
+
+    virtual void setIP(QString ip) = 0;
+    virtual QString getIP() const = 0;
 };
 
 #endif // IDEVICE_H

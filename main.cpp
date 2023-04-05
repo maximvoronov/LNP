@@ -7,46 +7,66 @@
 #include <QScreen>
 #include <iostream>
 #include <QTextCodec>
+#include <QDate>
+#include <QTime>
+#include <exception.h>
+#include <lnprwin.h>
+#include <equipmentwindow.h>
+#include <passwordwindow.h>
 
-
-void writeSettings(QString group, QString value)
+//class LNPRWin;
+//class EquipmentWindow;
+void writeSettings(QSettings* settings, QString group, QString value)
 {
-    QSettings settings;
-    settings.beginGroup(group);
-    settings.setDefaultFormat(QSettings::IniFormat);
-    settings.setValue(group, value);
-    settings.sync();
-    settings.endGroup();
-}
-
-void readSetting()
-{
-
+    settings->beginGroup(group);
+    settings->setValue(group, value);
+    settings->endGroup();
+    settings->sync();
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(res);
+    static QSettings *settings = new QSettings();
+    try {
+        settings->setObjectName(QString("system.ini"));
+        settings->setDefaultFormat(QSettings::IniFormat);
+    } catch (Exception::ErrorReadDataException e) {
+        e.raise();
+    }
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screen_geometry = screen->geometry();
     int screen_height = screen_geometry.height();
     int screen_width = screen_geometry.width();
-    QTextCodec *codec=QTextCodec::codecForName("UTF-8");
+    QDate date = QDate::currentDate();
+    QTime time = QTime::currentTime();
+
+    writeSettings(settings,"Application", a.applicationName());
+    writeSettings(settings,"Data", date.toString());
+    writeSettings(settings, "Time", time.toString());
+    writeSettings(settings, "DisplayName", a.applicationDisplayName());
+    writeSettings(settings, "Height", QString::number(screen_height, 10));
+    writeSettings(settings, "Width", QString::number(screen_width, 10));
+
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForLocale(codec);
 
-    LNPRWin w;
-    //QFile *style_desc = new QFile(":/style/styles.qss");
-    //style_desc->open(QFile::ReadOnly);
-    //QString cssfile = QLatin1String(style_desc->readAll());
-    writeSettings("Application", a.applicationName());
-    writeSettings("MainWindow/WindowWidth", QString::number(screen_height,10));
-    writeSettings("MainWindow/WindowHeight", QString::number(screen_width,10));
+    PasswordWindow *pw = nullptr;
+    pw = new PasswordWindow;
+    pw->show();
 
-    //w.setWindowFlag(Qt::FramelessWindowHint);
-    w.show();
-
+    /*
+    if(pw->l_password->text().toInt() == 0000)
+    {
+        LNPRWin w;
+        w.setWindowFlag(Qt::FramelessWindowHint);
+        QApplication::setQuitOnLastWindowClosed(false);
+        w.show();
+    }
+    */
+    //pw->show();
     return a.exec();
 }
 

@@ -26,7 +26,6 @@ PopUp::PopUp(QWidget *parent) : QWidget(parent)
 void PopUp::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
-
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
@@ -55,16 +54,13 @@ void PopUp::show()
     animation.setDuration(1500);     // Configuring the duration of the animation
     animation.setStartValue(0.0);   // The start value is 0 (fully transparent widget)
     animation.setEndValue(1.0);     // End - completely opaque widget
-
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect screen_geometry = screen->geometry();
-    int screen_height = screen_geometry.height();
-    int screen_width = screen_geometry.width();
-
+/*
     setGeometry(screen_width - 36 - screen_width + screen_geometry.x(),
                 screen_height - 36 - screen_height + screen_geometry.y(),
                 width(),
                 height());
+  */
+    setGeometry(60,60,200,100);
     QWidget::show();
     animation.start();
     timer->start(3000);

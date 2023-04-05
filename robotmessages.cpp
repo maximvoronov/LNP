@@ -5,6 +5,7 @@ RobotMessages::RobotMessages()
 
 RobotMessages::RobotMessages(QList<QString> message, int message_counter) : message(), message_counter(0)
 {
+
 }
 
 void RobotMessages::setMessage(QList<QString> message){

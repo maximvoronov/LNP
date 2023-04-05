@@ -7,5 +7,25 @@
         <file>equipment/sensors/pic/ise30a.jpg</file>
         <file>equipment/sensors/ise30a_01_n_m.xml</file>
         <file>equipment/encoder/pd30_08.xml</file>
+        <file>resources/bearing.jpg</file>
+        <file>resources/bearing1.png</file>
+        <file>resources/profile.jpg</file>
+        <file>resources/profile1.png</file>
+        <file>resources/chip.png</file>
+        <file>resources/chip2.png</file>
+        <file>resources/chip3.png</file>
+        <file>resources/sensor.png</file>
+        <file>resources/net.png</file>
+        <file>resources/radio1.png</file>
+        <file>resources/point.png</file>
+        <file>resources/way.png</file>
+        <file>resources/exit.png</file>
+        <file>resources/gear3.png</file>
+        <file>resources/robot2.png</file>
+        <file>resources/chem_block.png</file>
+        <file>resources/tech1.png</file>
+        <file>resources/tech2.png</file>
+        <file>resources/1.png</file>
+        <file>resources/robot3.png</file>
     </qresource>
 </RCC>
