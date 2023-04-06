@@ -40,6 +40,7 @@ SOURCES += \
     robotmessages.cpp \
     sensor/sensor.cpp \
     sensor/sensormessages.cpp \
+    servo/servo.cpp \
     sharingframe.cpp \
     swingdrive.cpp \
     systemtray.cpp \
@@ -61,10 +62,12 @@ HEADERS += \
     brake/brake.h \
     brush/brush.h \
     brush/ibrushproperty.h \
+    engine/ikinematicproperty.h \
     icoil.h \
     engine/engine.h \
     fan/ifanproperty.h \
     hillshademodule.h \
+    igeometry.h \
     messagebox.h \
     bxw.h \
     chemicalblock.h \
@@ -75,8 +78,6 @@ HEADERS += \
     exception.h \
     ianglesensorproperty.h \
     iencoderproperty.h \
-    engine/iengineproperty.h \
-    idevice.h \
     infowindow.h \
     iopticalsensorproperty.h \
     lnprwin.h \
@@ -197,6 +198,8 @@ HEADERS += \
     rxcpp/subjects/rx-subject.hpp \
     rxcpp/subjects/rx-synchronize.hpp \
     sensor/sensormessages.h \
+    servo/iservoproperty.h \
+    servo/servo.h \
     sharingframe.h \
     swingdrive.h \
     systemtray.h \

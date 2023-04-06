@@ -1,9 +1,9 @@
 #ifndef BRAKE_H
 #define BRAKE_H
-#include "idevice.h"
+#include "igeometry.h"
 #include <QString>
 
-class Brake : public IDevice
+class Brake : public IGeometry
 {
 public:
     enum class BRAKECATEGORIES { ELECTROMAGNETIC_CLUTCHES_AND_BRAKES, SPRING_BRAKES, BRAKE_MOTORS };

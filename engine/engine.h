@@ -1,12 +1,12 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <idevice.h>
+#include <igeometry.h>
 #include <icoil.h>
-#include <engine/iengineproperty.h>
+#include <engine/ikinematicproperty.h>
 #include <QString>
 
-class Engine : public IDevice, public ICoil, public IEngineProperty
+class Engine : public IGeometry, public ICoil, public IKinematicProperty
 {
 public:
     Engine();
@@ -44,6 +44,7 @@ public:
     qreal getWattage() const override;
     void setRessistance(qreal ressistance) override;
     qreal getRessistance() const override;
+    /*IKinematicProperty*/
     void setTorque(qreal torque) override;
     qreal getTorque() const override;
     void setInercia(qreal inercia) override;

@@ -5,6 +5,7 @@
 class IBrushProperty
 {
 public:
+    enum class STIFFNESS {};
     IBrushProperty();
 };
 

@@ -1,10 +1,10 @@
 #ifndef VALVE_H
 #define VALVE_H
 #include <qglobal.h>
-#include <idevice.h>
+#include <igeometry.h>
 #include <valve/ivalveproperty.h>
 
-class Valve : public IDevice, public IValveProperty
+class Valve : public IGeometry, public IValveProperty
 {
 public:
     enum class ValveType{ DIRRECT, INDIRRECT };

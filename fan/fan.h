@@ -1,12 +1,12 @@
 #ifndef FAN_H
 #define FAN_H
-#include <idevice.h>
+#include <igeometry.h>
 #include <icoil.h>
 #include <fan/ifanproperty.h>
 #include <QString>
 #include <QPixmap>
 
-class Fan : public IDevice, public ICoil, public IFanProperty
+class Fan : public IGeometry, public ICoil, public IFanProperty
 {
 public:
     Fan();

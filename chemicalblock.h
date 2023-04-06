@@ -1,10 +1,10 @@
 #ifndef CHEMICALBLOCK_H
 #define CHEMICALBLOCK_H
-#include <idevice.h>
+#include <igeometry.h>
 #include <qthread.h>
 /*Модуль подготовки подачи растворов*/
 class QThread;
-class ChemicalBlock : public IDevice
+class ChemicalBlock : public IGeometry
 {
 public:
     ChemicalBlock();

@@ -1,6 +1,6 @@
 #ifndef THERMOBLOCK_H
 #define THERMOBLOCK_H
-#include <idevice.h>
+#include <igeometry.h>
 #include <mechmovepushers.h>
 /*Блок термообработки*/
 class ThermoBlock

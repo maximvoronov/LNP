@@ -13,7 +13,7 @@ public:
     TechProcess();
     ~TechProcess();
 
-    bool setStateProcess(int sec);
+    bool setTimeProcess(int sec);
     bool saveToDB();
     bool animateUI(QWidget *widget);
 protected:
@@ -22,6 +22,7 @@ private:
     QThread *thread = nullptr;
     qint32 step_counter;
     QString text, database_name;
+
 
 };
 

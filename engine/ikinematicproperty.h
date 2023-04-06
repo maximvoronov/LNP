@@ -1,11 +1,11 @@
-#ifndef IENGINEPROPERTY_H
-#define IENGINEPROPERTY_H
+#ifndef IKINEMATICPROPERTY_H
+#define IKINEMATICPROPERTY_H
 #include <qglobal.h>
 
-class IEngineProperty
+class IKinematicProperty
 {
 public:
-    enum class ENGINE { PNEVMO, HYDRO };
+    //enum class ENGINE { PNEVMO, HYDRO };
     virtual qreal getShaftSize() const = 0;
     virtual void setShaftSize(qreal shaft_size) = 0;
     virtual qreal getTorque() const = 0;
@@ -18,4 +18,4 @@ public:
     virtual void setMotoHours(quint32) = 0;
 };
 
-#endif // IENGINEPROPERTY_H
+#endif // IKINEMATICPROPERTY_H

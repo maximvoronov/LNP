@@ -3,14 +3,14 @@
 
 #include <QThread>
 #include <QString>
-#include <idevice.h>
+#include <igeometry.h>
 #include <icoil.h>
 #include <sensor/isensorproperty.h>
 
 class InfoWindow;
 class Robot;
 class ThermoBlock;
-class Sensor : public IDevice, public ICoil, public ISensorProperty
+class Sensor : public IGeometry, public ICoil, public ISensorProperty
 {
 public:
     friend class InfoWindow;

@@ -1,8 +1,8 @@
 #ifndef HILLSHADEMODULE_H
 #define HILLSHADEMODULE_H
-#include <idevice.h>
+#include <igeometry.h>
 /*Модуль отмывки*/
-class HillShadeModule: public IDevice
+class HillShadeModule: public IGeometry
 {
 public:
     enum class WASH { HYDRO, HYDRO_MECHANICAL };

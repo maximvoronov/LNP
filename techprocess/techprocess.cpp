@@ -7,3 +7,9 @@ TechProcess::TechProcess()
 }
 TechProcess::~TechProcess(){}
 
+bool TechProcess::setTimeProcess(int sec)
+{
+
+    return false;
+}
+

@@ -1,10 +1,10 @@
 #ifndef PUMP_H
 #define PUMP_H
 
-#include <idevice.h>
+#include <igeometry.h>
 #include <QString>
 
-class Pump : public IDevice
+class Pump : public IGeometry
 {
 public:
     Pump();

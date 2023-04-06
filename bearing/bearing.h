@@ -1,10 +1,10 @@
 #ifndef BEARING_H
 #define BEARING_H
-#include <idevice.h>
+#include <igeometry.h>
 #include <bearing/ibearingproperty.h>
 #include <QString>
 
-class Bearing : public IDevice, public IBearingProperty
+class Bearing : public IGeometry, public IBearingProperty
 {
 public:
     Bearing();
