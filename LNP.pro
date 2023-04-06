@@ -54,7 +54,6 @@ SOURCES += \
     manipulatortraveldrive.cpp \
     robot.cpp \
     washmodulewindow.cpp
-
 HEADERS += \
     applicationmodulewindow.h \
     bearing/bearing.h \
@@ -63,17 +62,18 @@ HEADERS += \
     brush/brush.h \
     brush/ibrushproperty.h \
     engine/ikinematicproperty.h \
-    icoil.h \
     engine/engine.h \
     fan/ifanproperty.h \
     hillshademodule.h \
-    igeometry.h \
     messagebox.h \
     bxw.h \
     chemicalblock.h \
     diagnosticwindow.h \
     encoder.h \
     equipmentwindow.h \
+    object/icoil.h \
+    object/igeometry.h \
+    object/ikinematic.h \
     passwordwindow.h \
     exception.h \
     ianglesensorproperty.h \

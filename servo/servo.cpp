@@ -2,11 +2,9 @@
 
 Servo::Servo()
 {
-
 }
 Servo::~Servo()
 {
-
 }
 void Servo::setMass(qreal mass){
     this->mass = mass;
@@ -55,4 +53,34 @@ void Servo::setIP(QString ip){
 }
 QString Servo::getIP() const {
      return this->ip;
+}
+void Servo::setTorque(qreal torque){
+    this->torque = torque;
+}
+qreal Servo::getTorque() const{
+    return this->torque;
+}
+void Servo::setDiameter(qreal diameter){
+    this->diameter = diameter;
+}
+qreal Servo::getDiameter() const{
+    return this->diameter;
+}
+void Servo::setShaftSize(qreal shaft_size){
+    this->shaftsize = shaft_size;
+}
+qreal Servo::getShaftSize() const{
+    return this->shaftsize;
+}
+void Servo::setInercia(qreal inercia){
+    this->inercia = inercia;
+}
+qreal Servo::getInercia() const{
+    return inercia;
+}
+void Servo::setMotoHours(quint32 moto_hours){
+    this->motohours = moto_hours;
+}
+quint32 Servo::getMotoHours() const{
+    return this->motohours;
 }

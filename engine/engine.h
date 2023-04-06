@@ -3,12 +3,13 @@
 
 #include <igeometry.h>
 #include <icoil.h>
-#include <engine/ikinematicproperty.h>
+#include <object/ikinematic.h>
 #include <QString>
 
-class Engine : public IGeometry, public ICoil, public IKinematicProperty
+class Engine : public IGeometry, public ICoil, public IKinematic
 {
 public:
+    enum class ENGINE { PNEVMO, HYDRO };
     Engine();
     ~Engine();
     Q_DISABLE_COPY_MOVE(Engine);
@@ -44,7 +45,7 @@ public:
     qreal getWattage() const override;
     void setRessistance(qreal ressistance) override;
     qreal getRessistance() const override;
-    /*IKinematicProperty*/
+    /*IKinematic*/
     void setTorque(qreal torque) override;
     qreal getTorque() const override;
     void setInercia(qreal inercia) override;
