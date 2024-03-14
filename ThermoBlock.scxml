@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" name="ThermoBlock" qt:editorversion="4.11.1" initial="Включить установку">
+    <qt:editorinfo initialGeometry="29.69;255.97;-20;-20;40;40"/>
+    <final id="Final_1">
+        <qt:editorinfo geometry="1192.84;530.76;-20;-20;64;59.93" scenegeometry="1192.84;530.76;1172.84;510.76;64;59.93"/>
+    </final>
+    <state id="Включить установку">
+        <qt:editorinfo geometry="221.17;255.97;-121.77;-50;193;100" scenegeometry="221.17;255.97;99.40;205.97;193;100"/>
+        <onentry>
+            <raise/>
+        </onentry>
+        <transition type="external" event="Transition_10" target="Выбрать режим"/>
+    </state>
+    <parallel id="Продготовить в исходное положение">
+        <qt:editorinfo geometry="806.80;197.90;-183.39;-110.52;525.37;337.17" scenegeometry="806.80;197.90;623.41;87.38;525.37;337.17"/>
+        <datamodel/>
+        <state id="Закрыть затвор">
+            <qt:editorinfo geometry="-68.57;-0.29;-60;-50;140.86;100" scenegeometry="738.23;197.61;678.23;147.61;140.86;100"/>
+            <invoke/>
+        </state>
+        <state id="Нагреть плиту">
+            <qt:editorinfo geometry="-75.74;112.53;-50.59;-48.39;135.55;100" scenegeometry="731.06;310.43;680.47;262.04;135.55;100"/>
+        </state>
+    </parallel>
+    <state id="Выбрать режим">
+        <qt:editorinfo geometry="410.57;224.89;-39.83;-35.08;174.99;132.32" scenegeometry="410.57;224.89;370.74;189.81;174.99;132.32"/>
+        <transition type="external" event="Transition_12" target="Продготовить в исходное положение">
+            <qt:editorinfo endTargetFactors="3.14;49.51"/>
+        </transition>
+    </state>
+    <state id="Подготовить пластину">
+        <qt:editorinfo geometry="78.48;340.97;-71.45;61.78;479.30;371.32" scenegeometry="78.48;340.97;7.03;402.75;479.30;371.32"/>
+        <state id="Поднять иглы">
+            <qt:editorinfo geometry="33.13;181.22;-60;-50;159.34;100" scenegeometry="111.61;522.19;51.61;472.19;159.34;100"/>
+        </state>
+        <state id="Опустить затвор">
+            <qt:editorinfo geometry="33.13;290.78;-60;-50;161.36;133.92" scenegeometry="111.61;631.75;51.61;581.75;161.36;133.92"/>
+        </state>
+        <transition type="external" event="Transition_3" target="Переместить пластину">
+            <qt:editorinfo endTargetFactors="6.19;62.17"/>
+        </transition>
+    </state>
+    <state id="Переместить пластину">
+        <qt:editorinfo geometry="597.94;507.07;-60;-50;239.16;205.37" scenegeometry="597.94;507.07;537.94;457.07;239.16;205.37"/>
+        <transition type="external" event="Transition_2" target="Подтвердить загрузку">
+            <qt:editorinfo endTargetFactors="7.12;62.97"/>
+        </transition>
+    </state>
+    <state id="Подтвердить загрузку">
+        <qt:editorinfo geometry="871.33;453.58;-10.60;16.63;187.71;141.03" scenegeometry="871.33;453.58;860.73;470.21;187.71;141.03"/>
+        <transition type="external" event="Transition_4" target="Final_1"/>
+    </state>
+</scxml>

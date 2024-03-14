@@ -1,5 +1,3 @@
-#include "lnprwin.h"
-
 #include <QApplication>
 #include <QPushButton>
 #include <QSettings>
@@ -10,9 +8,9 @@
 #include <QDate>
 #include <QTime>
 #include <exception.h>
-#include <lnprwin.h>
-#include <equipmentwindow.h>
-#include <passwordwindow.h>
+#include <Forms/lnprwin.h>
+#include <Forms/equipmentwindow.h>
+#include <Forms/passwordwindow.h>
 
 //class LNPRWin;
 //class EquipmentWindow;

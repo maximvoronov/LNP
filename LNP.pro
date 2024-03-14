@@ -16,82 +16,97 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    applicationmodulewindow.cpp \
-    bearing/bearing.cpp \
-    brake/brake.cpp \
-    brush/brush.cpp \
-    engine/engine.cpp \
-    hillshademodule.cpp \
-    messagebox.cpp \
-    bxw.cpp \
-    chemicalblock.cpp \
-    diagnosticwindow.cpp \
-    equipmentwindow.cpp \
-    passwordwindow.cpp \
+    Forms/applicationmodulewindow.cpp \
+    Forms/diagnosticwindow.cpp \
+    Forms/equipmentwindow.cpp \
+    Forms/infowindow.cpp \
+    Forms/lnprwin.cpp \
+    Forms/passwordwindow.cpp \
+    Forms/washmodulewindow.cpp \
+    MechLIB/bearing/bearing.cpp \
+    MechLIB/brake/brake.cpp \
+    MechLIB/brush/brush.cpp \
+    MechLIB/brush/ibrushproperty.cpp \
+    MechLIB/engine/engine.cpp \
+    MechLIB/pump/pump.cpp \
+    MechLIB/sensor/sensor.cpp \
+    MechLIB/sensor/sensormessages.cpp \
+    MechLIB/servo/servo.cpp \
+    MechLIB/valve/valve.cpp \
+    Modules/ChemicalBlockModule/chemicalblock.cpp \
+    Modules/HillShadeModule/hillshademodule.cpp \
+    Modules/HillShadeModule/vacuumcontrol.cpp \
+    Modules/PreparationModule/preparationmodule.cpp \
+    Modules/PreparationModule/preparationmodulemessages.cpp \
+    Modules/RobotModule/manipulatortraveldrive.cpp \
+    Modules/RobotModule/robot.cpp \
+    Modules/RobotModule/verticaldrive.cpp \
+    Modules/RobotModule/swingdrive.cpp \
+    Modules/RobotModule/robotmessages.cpp \
+    Modules/ThermoBlockModule/thermoblock.cpp \
+    Modules/ThermoBlockModule/mechmovepushers.cpp \
+    messagebox.cpp \  
+    net/ModBus/modbus.cpp \
+    net/ModBus/modbus_tcp.cpp \
     exception.cpp \
-    infowindow.cpp \
     main.cpp \
-    lnprwin.cpp \
-    mechmovepushers.cpp \
     popup.cpp \
-    preparationmodulemessages.cpp \
     progressbar.cpp \
-    pump/pump.cpp \
-    robotmessages.cpp \
-    sensor/sensor.cpp \
-    sensor/sensormessages.cpp \
-    servo/servo.cpp \
     sharingframe.cpp \
-    swingdrive.cpp \
     systemtray.cpp \
-    techmessages.cpp \
+    techprocess/techmessages.cpp \
     techprocess/techprocess.cpp \
-    thermoblock.cpp \
-    vacuumcontrol.cpp \
-    valve/valve.cpp \
-    verticaldrive.cpp \
-    encoder.cpp \
-    manipulatortraveldrive.cpp \
-    robot.cpp \
-    washmodulewindow.cpp
+
 HEADERS += \
-    applicationmodulewindow.h \
-    bearing/bearing.h \
-    bearing/ibearingproperty.h \
-    brake/brake.h \
-    brush/brush.h \
-    brush/ibrushproperty.h \
-    engine/ikinematicproperty.h \
-    engine/engine.h \
-    fan/ifanproperty.h \
-    hillshademodule.h \
+    Forms/applicationmodulewindow.h \
+    Forms/diagnosticwindow.h \
+    Forms/equipmentwindow.h \
+    Forms/infowindow.h \
+    Forms/lnprwin.h \
+    Forms/passwordwindow.h \
+    Forms/washmodulewindow.h \
+    MechLIB/bearing/bearing.h \
+    MechLIB/bearing/ibearingproperty.h \
+    MechLIB/brake/brake.h \
+    MechLIB/brush/brush.h \
+    MechLIB/brush/ibrushproperty.h \
+    MechLIB/engine/engine.h \
+    MechLIB/engine/iengineproperty.h \
+    MechLIB/object/icoil.h \
+    MechLIB/object/igeometry.h \
+    MechLIB/object/ikinematic.h \
+    MechLIB/pump/ipumpproperty.h \
+    MechLIB/pump/pump.h \
+    MechLIB/sensor/ianglesensorproperty.h \
+    MechLIB/sensor/iencoderproperty.h \
+    MechLIB/sensor/iopticalsensorproperty.h \
+    MechLIB/sensor/isensorproperty.h \
+    MechLIB/sensor/sensor.h \
+    MechLIB/sensor/sensormessages.h \
+    MechLIB/servo/iservoproperty.h \
+    MechLIB/servo/servo.h \
+    MechLIB/valve/ivalveproperty.h \
+    MechLIB/valve/valve.h \
+    Modules/ChemicalBlockModule/chemicalblock.h \
+    Modules/HillShadeModule/hillshademodule.h \
+    Modules/HillShadeModule/vacuumcontrol.h \
+    Modules/PreparationModule/preparationmodule.h \
+    Modules/RobotModule/manipulatortraveldrive.h \
+    Modules/RobotModule/robot.h \
+    Modules/RobotModule/robotmessages.h \
+    Modules/RobotModule/verticaldrive.h \
+    Modules/RobotModule/swingdrive.h \
+    Modules/ThermoBlockModule/thermoblock.h \
+    Modules/ThermoBlockModule/mechmovepushers.h \
+    techprocess/techmessages.h \
+    techprocess/techprocess.h \
     messagebox.h \
-    bxw.h \
-    chemicalblock.h \
-    diagnosticwindow.h \
-    encoder.h \
-    equipmentwindow.h \
-    object/icoil.h \
-    object/igeometry.h \
-    object/ikinematic.h \
-    passwordwindow.h \
+    net/ModBus/Modbus_RTU.h \
+    net/ModBus/modbus.h \
+    net/ModBus/modbus_tcp.h \
     exception.h \
-    ianglesensorproperty.h \
-    iencoderproperty.h \
-    infowindow.h \
-    iopticalsensorproperty.h \
-    lnprwin.h \
-    mechmovepushers.h \
     popup.h \
-    preparationmodulemessages.h \
     progressbar.h \
-    pump/ipumpproperty.h \
-    pump/pump.h \
-    robot.h \
-    sensor/isensorproperty.h \
-    sensor/sensor.h \
-    sensor/sensormessages.h \
-    robotmessages.h \
     rxcpp/operators/rx-all.hpp \
     rxcpp/operators/rx-amb.hpp \
     rxcpp/operators/rx-any.hpp \
@@ -197,23 +212,9 @@ HEADERS += \
     rxcpp/subjects/rx-replaysubject.hpp \
     rxcpp/subjects/rx-subject.hpp \
     rxcpp/subjects/rx-synchronize.hpp \
-    sensor/sensormessages.h \
-    servo/iservoproperty.h \
-    servo/servo.h \
     sharingframe.h \
-    swingdrive.h \
     systemtray.h \
-    techmessages.h \
-    techprocess/techprocess.h \
-    thermoblock.h \
     vacuumcontrol.h \
-    fan/ifanproperty.h \
-    valve/ivalveproperty.h \
-    valve/valve.h \
-    verticaldrive.h \
-    washmodulewindow.h
-    manipulatortraveldrive.h \
-
 TRANSLATIONS +=
     LNP_ru_RU.ts
 
@@ -239,8 +240,11 @@ DISTFILES += \
     resources/ec2.png.jfif \
     resources/gear2.png \
     resources/i.png \
+    resources/mar140.png \
+    resources/mar180.png \
     resources/profile.jpg \
     resources/profile1.png \
+    resources/robot.png \
     resources/scheme.jpg \ \
     robot.qmodel
 

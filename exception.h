@@ -5,7 +5,7 @@
 #include <iostream>
 #include <QMessageBox>
 #include <QSharedData>
-#include <sensor/sensormessages.h>
+#include <MechLIB/sensor/sensormessages.h>
 #include <QException>
 #include <QString>
 #include <QByteArray>

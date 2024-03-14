@@ -1,31 +1,33 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/gear2.png</file>
-        <file>resources/ec.png</file>
-        <file>resources/ec2.png</file>
         <file>resources/scheme.jpg</file>
         <file>equipment/sensors/pic/ise30a.jpg</file>
         <file>equipment/sensors/ise30a_01_n_m.xml</file>
         <file>equipment/encoder/pd30_08.xml</file>
         <file>resources/bearing.jpg</file>
         <file>resources/bearing1.png</file>
-        <file>resources/profile.jpg</file>
-        <file>resources/profile1.png</file>
-        <file>resources/chip.png</file>
-        <file>resources/chip2.png</file>
-        <file>resources/chip3.png</file>
-        <file>resources/sensor.png</file>
         <file>resources/net.png</file>
         <file>resources/radio1.png</file>
-        <file>resources/point.png</file>
-        <file>resources/way.png</file>
         <file>resources/exit.png</file>
-        <file>resources/gear3.png</file>
-        <file>resources/robot2.png</file>
-        <file>resources/chem_block.png</file>
         <file>resources/tech1.png</file>
         <file>resources/tech2.png</file>
-        <file>resources/1.png</file>
-        <file>resources/robot3.png</file>
+        <file>resources/r2.png</file>
+        <file>resources/termo1.png</file>
+        <file>resources/termo2.png</file>
+        <file>resources/wash140.png</file>
+        <file>resources/case180.png</file>
+        <file>resources/case220.png</file>
+        <file>resources/centr140.png</file>
+        <file>resources/centr180.png</file>
+        <file>resources/mar140.png</file>
+        <file>resources/plate140.png</file>
+        <file>resources/plate180.png</file>
+        <file>resources/bcoll140.png</file>
+        <file>resources/bcoll180.png</file>
+        <file>resources/bprep140.png</file>
+        <file>resources/bprep180.png</file>
+        <file>resources/turn140.png</file>
+        <file>resources/turn180.png</file>
     </qresource>
 </RCC>
